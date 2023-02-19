@@ -15,6 +15,6 @@ help: ## View help information
 bootstrap: ## Bootstrap project
 	@bash ./@scripts/bootstrap.sh
 
-.PHONY: generate
-generate: ## Generate API doc
-	@bash ./@scripts/generate.sh
+.PHONY: build
+build: ## Build docs
+	@bash ./@scripts/build.sh
