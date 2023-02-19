@@ -448,7 +448,7 @@
           }
         },
         "tags": [
-          "payment"
+          "Payments"
         ],
         "security": [
           {
@@ -765,7 +765,7 @@
           }
         },
         "tags": [
-          "payment"
+          "Payments"
         ],
         "security": [
           {
@@ -1024,7 +1024,7 @@
           }
         },
         "tags": [
-          "payment"
+          "Payments"
         ],
         "security": [
           {
@@ -1292,7 +1292,7 @@
           }
         },
         "tags": [
-          "payment"
+          "Payments"
         ],
         "security": [
           {
@@ -1560,7 +1560,7 @@
           }
         },
         "tags": [
-          "payment"
+          "Payments"
         ],
         "security": [
           {
@@ -1619,7 +1619,7 @@
           }
         },
         "tags": [
-          "payment"
+          "Payments"
         ],
         "security": [
           {
@@ -1678,7 +1678,7 @@
           }
         },
         "tags": [
-          "payment"
+          "Payments"
         ],
         "security": [
           {
@@ -1707,7 +1707,7 @@
           }
         },
         "tags": [
-          "event"
+          "Events"
         ]
       }
     },
@@ -1731,24 +1731,24 @@
           }
         },
         "tags": [
-          "event"
+          "Events"
         ]
       }
     }
   },
   "info": {
-    "title": "Payment API",
-    "description": "The Payment API description",
+    "title": "Nafassi API",
+    "description": "The Nafassi API provides resource-oriented endpoints to create and capture payments using HTTP standards (status code, authentication, etc.)",
     "version": "1.0.0",
     "contact": {}
   },
   "tags": [
     {
-      "name": "event",
+      "name": "Events",
       "description": "The endpoints for handling events"
     },
     {
-      "name": "payment",
+      "name": "Payments",
       "description": "The endpoints for managing payments"
     }
   ],
