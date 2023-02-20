@@ -16,5 +16,5 @@ bootstrap: ## Bootstrap project
 	@bash ./@scripts/bootstrap.sh
 
 .PHONY: build
-build: ## Build docs
+build: ## Build pages
 	@bash ./@scripts/build.sh
