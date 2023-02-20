@@ -110,12 +110,12 @@
                   "purchase": {
                     "title": "Purchase",
                     "type": "object",
-                    "description": "The customer's order to purchase.",
+                    "description": "The customer's purchase data.",
                     "properties": {
                       "total": {
                         "title": "Amount",
                         "type": "object",
-                        "description": "The total of the order",
+                        "description": "The total of the purchase",
                         "properties": {
                           "value": {
                             "type": "string",
@@ -125,15 +125,19 @@
                             "type": "string",
                             "description": "The currency code of the amount. This must be an ISO 4217 Standard (three letters) for currency codes."
                           }
-                        }
+                        },
+                        "required": [
+                          "value",
+                          "currency"
+                        ]
                       },
                       "items": {
                         "type": "array",
-                        "description": "The order items to purchase.",
+                        "description": "The items of the purchase.",
                         "items": {
                           "title": "PurchaseItem",
                           "type": "object",
-                          "description": "A customer's order item to purchase.",
+                          "description": "A customer's purchase item.",
                           "properties": {
                             "name": {
                               "type": "string",
@@ -156,7 +160,11 @@
                                   "type": "string",
                                   "description": "The currency code of the amount. This must be an ISO 4217 Standard (three letters) for currency codes."
                                 }
-                              }
+                              },
+                              "required": [
+                                "value",
+                                "currency"
+                              ]
                             }
                           },
                           "required": [
@@ -194,7 +202,7 @@
                     "properties": {
                       "source": {
                         "type": "string",
-                        "description": "The payment method.\n- HOL: HOLO\n- HRM: Huri Money\n- MVL: MVola\n- PYP: PayPal\n- STR: Stripe",
+                        "description": "The customer's suited method for the payment.",
                         "enum": [
                           "HOL",
                           "PYP",
@@ -391,12 +399,12 @@
                             "purchase": {
                               "title": "Purchase",
                               "type": "object",
-                              "description": "The customer's order to purchase.",
+                              "description": "The customer's purchase data.",
                               "properties": {
                                 "total": {
                                   "title": "Amount",
                                   "type": "object",
-                                  "description": "The total of the order",
+                                  "description": "The total of the purchase",
                                   "properties": {
                                     "value": {
                                       "type": "string",
@@ -406,15 +414,19 @@
                                       "type": "string",
                                       "description": "The currency code of the amount. This must be an ISO 4217 Standard (three letters) for currency codes."
                                     }
-                                  }
+                                  },
+                                  "required": [
+                                    "value",
+                                    "currency"
+                                  ]
                                 },
                                 "items": {
                                   "type": "array",
-                                  "description": "The order items to purchase.",
+                                  "description": "The items of the purchase.",
                                   "items": {
                                     "title": "PurchaseItem",
                                     "type": "object",
-                                    "description": "A customer's order item to purchase.",
+                                    "description": "A customer's purchase item.",
                                     "properties": {
                                       "name": {
                                         "type": "string",
@@ -437,7 +449,11 @@
                                             "type": "string",
                                             "description": "The currency code of the amount. This must be an ISO 4217 Standard (three letters) for currency codes."
                                           }
-                                        }
+                                        },
+                                        "required": [
+                                          "value",
+                                          "currency"
+                                        ]
                                       }
                                     },
                                     "required": [
@@ -475,7 +491,7 @@
                               "properties": {
                                 "source": {
                                   "type": "string",
-                                  "description": "The payment method.\n- HOL: HOLO\n- HRM: Huri Money\n- MVL: MVola\n- PYP: PayPal\n- STR: Stripe",
+                                  "description": "The customer's suited method for the payment.",
                                   "enum": [
                                     "HOL",
                                     "PYP",
@@ -840,12 +856,12 @@
                               "purchase": {
                                 "title": "Purchase",
                                 "type": "object",
-                                "description": "The customer's order to purchase.",
+                                "description": "The customer's purchase data.",
                                 "properties": {
                                   "total": {
                                     "title": "Amount",
                                     "type": "object",
-                                    "description": "The total of the order",
+                                    "description": "The total of the purchase",
                                     "properties": {
                                       "value": {
                                         "type": "string",
@@ -855,15 +871,19 @@
                                         "type": "string",
                                         "description": "The currency code of the amount. This must be an ISO 4217 Standard (three letters) for currency codes."
                                       }
-                                    }
+                                    },
+                                    "required": [
+                                      "value",
+                                      "currency"
+                                    ]
                                   },
                                   "items": {
                                     "type": "array",
-                                    "description": "The order items to purchase.",
+                                    "description": "The items of the purchase.",
                                     "items": {
                                       "title": "PurchaseItem",
                                       "type": "object",
-                                      "description": "A customer's order item to purchase.",
+                                      "description": "A customer's purchase item.",
                                       "properties": {
                                         "name": {
                                           "type": "string",
@@ -886,7 +906,11 @@
                                               "type": "string",
                                               "description": "The currency code of the amount. This must be an ISO 4217 Standard (three letters) for currency codes."
                                             }
-                                          }
+                                          },
+                                          "required": [
+                                            "value",
+                                            "currency"
+                                          ]
                                         }
                                       },
                                       "required": [
@@ -924,7 +948,7 @@
                                 "properties": {
                                   "source": {
                                     "type": "string",
-                                    "description": "The payment method.\n- HOL: HOLO\n- HRM: Huri Money\n- MVL: MVola\n- PYP: PayPal\n- STR: Stripe",
+                                    "description": "The customer's suited method for the payment.",
                                     "enum": [
                                       "HOL",
                                       "PYP",
@@ -1272,12 +1296,12 @@
                         "purchase": {
                           "title": "Purchase",
                           "type": "object",
-                          "description": "The customer's order to purchase.",
+                          "description": "The customer's purchase data.",
                           "properties": {
                             "total": {
                               "title": "Amount",
                               "type": "object",
-                              "description": "The total of the order",
+                              "description": "The total of the purchase",
                               "properties": {
                                 "value": {
                                   "type": "string",
@@ -1287,15 +1311,19 @@
                                   "type": "string",
                                   "description": "The currency code of the amount. This must be an ISO 4217 Standard (three letters) for currency codes."
                                 }
-                              }
+                              },
+                              "required": [
+                                "value",
+                                "currency"
+                              ]
                             },
                             "items": {
                               "type": "array",
-                              "description": "The order items to purchase.",
+                              "description": "The items of the purchase.",
                               "items": {
                                 "title": "PurchaseItem",
                                 "type": "object",
-                                "description": "A customer's order item to purchase.",
+                                "description": "A customer's purchase item.",
                                 "properties": {
                                   "name": {
                                     "type": "string",
@@ -1318,7 +1346,11 @@
                                         "type": "string",
                                         "description": "The currency code of the amount. This must be an ISO 4217 Standard (three letters) for currency codes."
                                       }
-                                    }
+                                    },
+                                    "required": [
+                                      "value",
+                                      "currency"
+                                    ]
                                   }
                                 },
                                 "required": [
@@ -1356,7 +1388,7 @@
                           "properties": {
                             "source": {
                               "type": "string",
-                              "description": "The payment method.\n- HOL: HOLO\n- HRM: Huri Money\n- MVL: MVola\n- PYP: PayPal\n- STR: Stripe",
+                              "description": "The customer's suited method for the payment.",
                               "enum": [
                                 "HOL",
                                 "PYP",
@@ -1691,12 +1723,12 @@
                             "purchase": {
                               "title": "Purchase",
                               "type": "object",
-                              "description": "The customer's order to purchase.",
+                              "description": "The customer's purchase data.",
                               "properties": {
                                 "total": {
                                   "title": "Amount",
                                   "type": "object",
-                                  "description": "The total of the order",
+                                  "description": "The total of the purchase",
                                   "properties": {
                                     "value": {
                                       "type": "string",
@@ -1706,15 +1738,19 @@
                                       "type": "string",
                                       "description": "The currency code of the amount. This must be an ISO 4217 Standard (three letters) for currency codes."
                                     }
-                                  }
+                                  },
+                                  "required": [
+                                    "value",
+                                    "currency"
+                                  ]
                                 },
                                 "items": {
                                   "type": "array",
-                                  "description": "The order items to purchase.",
+                                  "description": "The items of the purchase.",
                                   "items": {
                                     "title": "PurchaseItem",
                                     "type": "object",
-                                    "description": "A customer's order item to purchase.",
+                                    "description": "A customer's purchase item.",
                                     "properties": {
                                       "name": {
                                         "type": "string",
@@ -1737,7 +1773,11 @@
                                             "type": "string",
                                             "description": "The currency code of the amount. This must be an ISO 4217 Standard (three letters) for currency codes."
                                           }
-                                        }
+                                        },
+                                        "required": [
+                                          "value",
+                                          "currency"
+                                        ]
                                       }
                                     },
                                     "required": [
@@ -1775,7 +1815,7 @@
                               "properties": {
                                 "source": {
                                   "type": "string",
-                                  "description": "The payment method.\n- HOL: HOLO\n- HRM: Huri Money\n- MVL: MVola\n- PYP: PayPal\n- STR: Stripe",
+                                  "description": "The customer's suited method for the payment.",
                                   "enum": [
                                     "HOL",
                                     "PYP",
@@ -2112,12 +2152,12 @@
                             "purchase": {
                               "title": "Purchase",
                               "type": "object",
-                              "description": "The customer's order to purchase.",
+                              "description": "The customer's purchase data.",
                               "properties": {
                                 "total": {
                                   "title": "Amount",
                                   "type": "object",
-                                  "description": "The total of the order",
+                                  "description": "The total of the purchase",
                                   "properties": {
                                     "value": {
                                       "type": "string",
@@ -2127,15 +2167,19 @@
                                       "type": "string",
                                       "description": "The currency code of the amount. This must be an ISO 4217 Standard (three letters) for currency codes."
                                     }
-                                  }
+                                  },
+                                  "required": [
+                                    "value",
+                                    "currency"
+                                  ]
                                 },
                                 "items": {
                                   "type": "array",
-                                  "description": "The order items to purchase.",
+                                  "description": "The items of the purchase.",
                                   "items": {
                                     "title": "PurchaseItem",
                                     "type": "object",
-                                    "description": "A customer's order item to purchase.",
+                                    "description": "A customer's purchase item.",
                                     "properties": {
                                       "name": {
                                         "type": "string",
@@ -2158,7 +2202,11 @@
                                             "type": "string",
                                             "description": "The currency code of the amount. This must be an ISO 4217 Standard (three letters) for currency codes."
                                           }
-                                        }
+                                        },
+                                        "required": [
+                                          "value",
+                                          "currency"
+                                        ]
                                       }
                                     },
                                     "required": [
@@ -2196,7 +2244,7 @@
                               "properties": {
                                 "source": {
                                   "type": "string",
-                                  "description": "The payment method.\n- HOL: HOLO\n- HRM: Huri Money\n- MVL: MVola\n- PYP: PayPal\n- STR: Stripe",
+                                  "description": "The customer's suited method for the payment.",
                                   "enum": [
                                     "HOL",
                                     "PYP",
