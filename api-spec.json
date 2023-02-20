@@ -62,7 +62,7 @@
                       "address": {
                         "title": "Address",
                         "type": "object",
-                        "description": "Address data.",
+                        "description": "The customer’s address.",
                         "properties": {
                           "line1": {
                             "type": "string",
@@ -115,7 +115,7 @@
                       "total": {
                         "title": "Amount",
                         "type": "object",
-                        "description": "Amount data.",
+                        "description": "The total of the order",
                         "properties": {
                           "value": {
                             "type": "string",
@@ -129,7 +129,7 @@
                       },
                       "items": {
                         "type": "array",
-                        "description": "The items to purchase.",
+                        "description": "The order items to purchase.",
                         "items": {
                           "title": "PurchaseItem",
                           "type": "object",
@@ -146,7 +146,7 @@
                             "amount": {
                               "title": "Amount",
                               "type": "object",
-                              "description": "Amount data.",
+                              "description": "The total of the item",
                               "properties": {
                                 "value": {
                                   "type": "string",
@@ -197,8 +197,6 @@
                         "description": "The payment method.\n- HOL: HOLO\n- HRM: Huri Money\n- MVL: MVola\n- PYP: PayPal\n- STR: Stripe",
                         "enum": [
                           "HOL",
-                          "HRM",
-                          "MVL",
                           "PYP",
                           "STR"
                         ]
@@ -232,6 +230,30 @@
                       "type": "object",
                       "description": "The payment data.",
                       "properties": {
+                        "status": {
+                          "type": "string",
+                          "description": "The payment status.",
+                          "enum": [
+                            "init",
+                            "pending",
+                            "canceled",
+                            "submitted",
+                            "approved",
+                            "executed",
+                            "completed"
+                          ],
+                          "readOnly": true
+                        },
+                        "paid": {
+                          "type": "boolean",
+                          "description": "Whether the payment was successfully captured.",
+                          "readOnly": true
+                        },
+                        "payee": {
+                          "type": "object",
+                          "description": "Whether the payment was successfully captured.",
+                          "readOnly": true
+                        },
                         "claim": {
                           "title": "Claim",
                           "type": "object",
@@ -274,7 +296,7 @@
                                 "address": {
                                   "title": "Address",
                                   "type": "object",
-                                  "description": "Address data.",
+                                  "description": "The customer’s address.",
                                   "properties": {
                                     "line1": {
                                       "type": "string",
@@ -327,7 +349,7 @@
                                 "total": {
                                   "title": "Amount",
                                   "type": "object",
-                                  "description": "Amount data.",
+                                  "description": "The total of the order",
                                   "properties": {
                                     "value": {
                                       "type": "string",
@@ -341,7 +363,7 @@
                                 },
                                 "items": {
                                   "type": "array",
-                                  "description": "The items to purchase.",
+                                  "description": "The order items to purchase.",
                                   "items": {
                                     "title": "PurchaseItem",
                                     "type": "object",
@@ -358,7 +380,7 @@
                                       "amount": {
                                         "title": "Amount",
                                         "type": "object",
-                                        "description": "Amount data.",
+                                        "description": "The total of the item",
                                         "properties": {
                                           "value": {
                                             "type": "string",
@@ -409,8 +431,6 @@
                                   "description": "The payment method.\n- HOL: HOLO\n- HRM: Huri Money\n- MVL: MVola\n- PYP: PayPal\n- STR: Stripe",
                                   "enum": [
                                     "HOL",
-                                    "HRM",
-                                    "MVL",
                                     "PYP",
                                     "STR"
                                   ]
@@ -423,11 +443,47 @@
                             "cancelUrl",
                             "successUrl"
                           ]
+                        },
+                        "billing": {
+                          "type": "object",
+                          "readOnly": true
+                        },
+                        "createdAt": {
+                          "type": "string",
+                          "description": "Time at which the payment was created.",
+                          "readOnly": true
+                        },
+                        "claimedAt": {
+                          "type": "string",
+                          "description": "Time at which the payment was claimed.",
+                          "readOnly": true
+                        },
+                        "canceledAt": {
+                          "type": "string",
+                          "description": "Time at which the payment was canceled.",
+                          "readOnly": true
+                        },
+                        "submittedAt": {
+                          "type": "string",
+                          "description": "Time at which the payment was submitted.",
+                          "readOnly": true
+                        },
+                        "approvedAt": {
+                          "type": "string",
+                          "description": "Time at which the payment was approved.",
+                          "readOnly": true
+                        },
+                        "executedAt": {
+                          "type": "string",
+                          "description": "Time at which the payment was executed.",
+                          "readOnly": true
+                        },
+                        "completedAt": {
+                          "type": "string",
+                          "description": "Time at which the payment was completed.",
+                          "readOnly": true
                         }
-                      },
-                      "required": [
-                        "claim"
-                      ]
+                      }
                     }
                   }
                 }
@@ -528,6 +584,30 @@
                         "type": "object",
                         "description": "The payment data.",
                         "properties": {
+                          "status": {
+                            "type": "string",
+                            "description": "The payment status.",
+                            "enum": [
+                              "init",
+                              "pending",
+                              "canceled",
+                              "submitted",
+                              "approved",
+                              "executed",
+                              "completed"
+                            ],
+                            "readOnly": true
+                          },
+                          "paid": {
+                            "type": "boolean",
+                            "description": "Whether the payment was successfully captured.",
+                            "readOnly": true
+                          },
+                          "payee": {
+                            "type": "object",
+                            "description": "Whether the payment was successfully captured.",
+                            "readOnly": true
+                          },
                           "claim": {
                             "title": "Claim",
                             "type": "object",
@@ -570,7 +650,7 @@
                                   "address": {
                                     "title": "Address",
                                     "type": "object",
-                                    "description": "Address data.",
+                                    "description": "The customer’s address.",
                                     "properties": {
                                       "line1": {
                                         "type": "string",
@@ -623,7 +703,7 @@
                                   "total": {
                                     "title": "Amount",
                                     "type": "object",
-                                    "description": "Amount data.",
+                                    "description": "The total of the order",
                                     "properties": {
                                       "value": {
                                         "type": "string",
@@ -637,7 +717,7 @@
                                   },
                                   "items": {
                                     "type": "array",
-                                    "description": "The items to purchase.",
+                                    "description": "The order items to purchase.",
                                     "items": {
                                       "title": "PurchaseItem",
                                       "type": "object",
@@ -654,7 +734,7 @@
                                         "amount": {
                                           "title": "Amount",
                                           "type": "object",
-                                          "description": "Amount data.",
+                                          "description": "The total of the item",
                                           "properties": {
                                             "value": {
                                               "type": "string",
@@ -705,8 +785,6 @@
                                     "description": "The payment method.\n- HOL: HOLO\n- HRM: Huri Money\n- MVL: MVola\n- PYP: PayPal\n- STR: Stripe",
                                     "enum": [
                                       "HOL",
-                                      "HRM",
-                                      "MVL",
                                       "PYP",
                                       "STR"
                                     ]
@@ -719,11 +797,47 @@
                               "cancelUrl",
                               "successUrl"
                             ]
+                          },
+                          "billing": {
+                            "type": "object",
+                            "readOnly": true
+                          },
+                          "createdAt": {
+                            "type": "string",
+                            "description": "Time at which the payment was created.",
+                            "readOnly": true
+                          },
+                          "claimedAt": {
+                            "type": "string",
+                            "description": "Time at which the payment was claimed.",
+                            "readOnly": true
+                          },
+                          "canceledAt": {
+                            "type": "string",
+                            "description": "Time at which the payment was canceled.",
+                            "readOnly": true
+                          },
+                          "submittedAt": {
+                            "type": "string",
+                            "description": "Time at which the payment was submitted.",
+                            "readOnly": true
+                          },
+                          "approvedAt": {
+                            "type": "string",
+                            "description": "Time at which the payment was approved.",
+                            "readOnly": true
+                          },
+                          "executedAt": {
+                            "type": "string",
+                            "description": "Time at which the payment was executed.",
+                            "readOnly": true
+                          },
+                          "completedAt": {
+                            "type": "string",
+                            "description": "Time at which the payment was completed.",
+                            "readOnly": true
                           }
-                        },
-                        "required": [
-                          "claim"
-                        ]
+                        }
                       }
                     },
                     "total": {
@@ -807,6 +921,30 @@
                   "type": "object",
                   "description": "The payment data.",
                   "properties": {
+                    "status": {
+                      "type": "string",
+                      "description": "The payment status.",
+                      "enum": [
+                        "init",
+                        "pending",
+                        "canceled",
+                        "submitted",
+                        "approved",
+                        "executed",
+                        "completed"
+                      ],
+                      "readOnly": true
+                    },
+                    "paid": {
+                      "type": "boolean",
+                      "description": "Whether the payment was successfully captured.",
+                      "readOnly": true
+                    },
+                    "payee": {
+                      "type": "object",
+                      "description": "Whether the payment was successfully captured.",
+                      "readOnly": true
+                    },
                     "claim": {
                       "title": "Claim",
                       "type": "object",
@@ -849,7 +987,7 @@
                             "address": {
                               "title": "Address",
                               "type": "object",
-                              "description": "Address data.",
+                              "description": "The customer’s address.",
                               "properties": {
                                 "line1": {
                                   "type": "string",
@@ -902,7 +1040,7 @@
                             "total": {
                               "title": "Amount",
                               "type": "object",
-                              "description": "Amount data.",
+                              "description": "The total of the order",
                               "properties": {
                                 "value": {
                                   "type": "string",
@@ -916,7 +1054,7 @@
                             },
                             "items": {
                               "type": "array",
-                              "description": "The items to purchase.",
+                              "description": "The order items to purchase.",
                               "items": {
                                 "title": "PurchaseItem",
                                 "type": "object",
@@ -933,7 +1071,7 @@
                                   "amount": {
                                     "title": "Amount",
                                     "type": "object",
-                                    "description": "Amount data.",
+                                    "description": "The total of the item",
                                     "properties": {
                                       "value": {
                                         "type": "string",
@@ -984,8 +1122,6 @@
                               "description": "The payment method.\n- HOL: HOLO\n- HRM: Huri Money\n- MVL: MVola\n- PYP: PayPal\n- STR: Stripe",
                               "enum": [
                                 "HOL",
-                                "HRM",
-                                "MVL",
                                 "PYP",
                                 "STR"
                               ]
@@ -998,11 +1134,47 @@
                         "cancelUrl",
                         "successUrl"
                       ]
+                    },
+                    "billing": {
+                      "type": "object",
+                      "readOnly": true
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "description": "Time at which the payment was created.",
+                      "readOnly": true
+                    },
+                    "claimedAt": {
+                      "type": "string",
+                      "description": "Time at which the payment was claimed.",
+                      "readOnly": true
+                    },
+                    "canceledAt": {
+                      "type": "string",
+                      "description": "Time at which the payment was canceled.",
+                      "readOnly": true
+                    },
+                    "submittedAt": {
+                      "type": "string",
+                      "description": "Time at which the payment was submitted.",
+                      "readOnly": true
+                    },
+                    "approvedAt": {
+                      "type": "string",
+                      "description": "Time at which the payment was approved.",
+                      "readOnly": true
+                    },
+                    "executedAt": {
+                      "type": "string",
+                      "description": "Time at which the payment was executed.",
+                      "readOnly": true
+                    },
+                    "completedAt": {
+                      "type": "string",
+                      "description": "Time at which the payment was completed.",
+                      "readOnly": true
                     }
-                  },
-                  "required": [
-                    "claim"
-                  ]
+                  }
                 }
               }
             }
@@ -1073,6 +1245,30 @@
                       "type": "object",
                       "description": "The payment data.",
                       "properties": {
+                        "status": {
+                          "type": "string",
+                          "description": "The payment status.",
+                          "enum": [
+                            "init",
+                            "pending",
+                            "canceled",
+                            "submitted",
+                            "approved",
+                            "executed",
+                            "completed"
+                          ],
+                          "readOnly": true
+                        },
+                        "paid": {
+                          "type": "boolean",
+                          "description": "Whether the payment was successfully captured.",
+                          "readOnly": true
+                        },
+                        "payee": {
+                          "type": "object",
+                          "description": "Whether the payment was successfully captured.",
+                          "readOnly": true
+                        },
                         "claim": {
                           "title": "Claim",
                           "type": "object",
@@ -1115,7 +1311,7 @@
                                 "address": {
                                   "title": "Address",
                                   "type": "object",
-                                  "description": "Address data.",
+                                  "description": "The customer’s address.",
                                   "properties": {
                                     "line1": {
                                       "type": "string",
@@ -1168,7 +1364,7 @@
                                 "total": {
                                   "title": "Amount",
                                   "type": "object",
-                                  "description": "Amount data.",
+                                  "description": "The total of the order",
                                   "properties": {
                                     "value": {
                                       "type": "string",
@@ -1182,7 +1378,7 @@
                                 },
                                 "items": {
                                   "type": "array",
-                                  "description": "The items to purchase.",
+                                  "description": "The order items to purchase.",
                                   "items": {
                                     "title": "PurchaseItem",
                                     "type": "object",
@@ -1199,7 +1395,7 @@
                                       "amount": {
                                         "title": "Amount",
                                         "type": "object",
-                                        "description": "Amount data.",
+                                        "description": "The total of the item",
                                         "properties": {
                                           "value": {
                                             "type": "string",
@@ -1250,8 +1446,6 @@
                                   "description": "The payment method.\n- HOL: HOLO\n- HRM: Huri Money\n- MVL: MVola\n- PYP: PayPal\n- STR: Stripe",
                                   "enum": [
                                     "HOL",
-                                    "HRM",
-                                    "MVL",
                                     "PYP",
                                     "STR"
                                   ]
@@ -1264,11 +1458,47 @@
                             "cancelUrl",
                             "successUrl"
                           ]
+                        },
+                        "billing": {
+                          "type": "object",
+                          "readOnly": true
+                        },
+                        "createdAt": {
+                          "type": "string",
+                          "description": "Time at which the payment was created.",
+                          "readOnly": true
+                        },
+                        "claimedAt": {
+                          "type": "string",
+                          "description": "Time at which the payment was claimed.",
+                          "readOnly": true
+                        },
+                        "canceledAt": {
+                          "type": "string",
+                          "description": "Time at which the payment was canceled.",
+                          "readOnly": true
+                        },
+                        "submittedAt": {
+                          "type": "string",
+                          "description": "Time at which the payment was submitted.",
+                          "readOnly": true
+                        },
+                        "approvedAt": {
+                          "type": "string",
+                          "description": "Time at which the payment was approved.",
+                          "readOnly": true
+                        },
+                        "executedAt": {
+                          "type": "string",
+                          "description": "Time at which the payment was executed.",
+                          "readOnly": true
+                        },
+                        "completedAt": {
+                          "type": "string",
+                          "description": "Time at which the payment was completed.",
+                          "readOnly": true
                         }
-                      },
-                      "required": [
-                        "claim"
-                      ]
+                      }
                     }
                   }
                 }
@@ -1341,6 +1571,30 @@
                       "type": "object",
                       "description": "The payment data.",
                       "properties": {
+                        "status": {
+                          "type": "string",
+                          "description": "The payment status.",
+                          "enum": [
+                            "init",
+                            "pending",
+                            "canceled",
+                            "submitted",
+                            "approved",
+                            "executed",
+                            "completed"
+                          ],
+                          "readOnly": true
+                        },
+                        "paid": {
+                          "type": "boolean",
+                          "description": "Whether the payment was successfully captured.",
+                          "readOnly": true
+                        },
+                        "payee": {
+                          "type": "object",
+                          "description": "Whether the payment was successfully captured.",
+                          "readOnly": true
+                        },
                         "claim": {
                           "title": "Claim",
                           "type": "object",
@@ -1383,7 +1637,7 @@
                                 "address": {
                                   "title": "Address",
                                   "type": "object",
-                                  "description": "Address data.",
+                                  "description": "The customer’s address.",
                                   "properties": {
                                     "line1": {
                                       "type": "string",
@@ -1436,7 +1690,7 @@
                                 "total": {
                                   "title": "Amount",
                                   "type": "object",
-                                  "description": "Amount data.",
+                                  "description": "The total of the order",
                                   "properties": {
                                     "value": {
                                       "type": "string",
@@ -1450,7 +1704,7 @@
                                 },
                                 "items": {
                                   "type": "array",
-                                  "description": "The items to purchase.",
+                                  "description": "The order items to purchase.",
                                   "items": {
                                     "title": "PurchaseItem",
                                     "type": "object",
@@ -1467,7 +1721,7 @@
                                       "amount": {
                                         "title": "Amount",
                                         "type": "object",
-                                        "description": "Amount data.",
+                                        "description": "The total of the item",
                                         "properties": {
                                           "value": {
                                             "type": "string",
@@ -1518,8 +1772,6 @@
                                   "description": "The payment method.\n- HOL: HOLO\n- HRM: Huri Money\n- MVL: MVola\n- PYP: PayPal\n- STR: Stripe",
                                   "enum": [
                                     "HOL",
-                                    "HRM",
-                                    "MVL",
                                     "PYP",
                                     "STR"
                                   ]
@@ -1532,11 +1784,47 @@
                             "cancelUrl",
                             "successUrl"
                           ]
+                        },
+                        "billing": {
+                          "type": "object",
+                          "readOnly": true
+                        },
+                        "createdAt": {
+                          "type": "string",
+                          "description": "Time at which the payment was created.",
+                          "readOnly": true
+                        },
+                        "claimedAt": {
+                          "type": "string",
+                          "description": "Time at which the payment was claimed.",
+                          "readOnly": true
+                        },
+                        "canceledAt": {
+                          "type": "string",
+                          "description": "Time at which the payment was canceled.",
+                          "readOnly": true
+                        },
+                        "submittedAt": {
+                          "type": "string",
+                          "description": "Time at which the payment was submitted.",
+                          "readOnly": true
+                        },
+                        "approvedAt": {
+                          "type": "string",
+                          "description": "Time at which the payment was approved.",
+                          "readOnly": true
+                        },
+                        "executedAt": {
+                          "type": "string",
+                          "description": "Time at which the payment was executed.",
+                          "readOnly": true
+                        },
+                        "completedAt": {
+                          "type": "string",
+                          "description": "Time at which the payment was completed.",
+                          "readOnly": true
                         }
-                      },
-                      "required": [
-                        "claim"
-                      ]
+                      }
                     }
                   }
                 }
@@ -1738,7 +2026,7 @@
   },
   "info": {
     "title": "Nafassi API",
-    "description": "The Nafassi API provides resource-oriented endpoints to create and capture payments using HTTP standards (status code, authentication, etc.)",
+    "description": "The Nafassi REST API provides resource-oriented endpoints to create and capture payments using HTTP standards (status code, authentication, etc.)",
     "version": "1.0.0",
     "contact": {}
   },
