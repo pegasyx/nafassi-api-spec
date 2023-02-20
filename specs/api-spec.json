@@ -249,13 +249,11 @@
                             "approved",
                             "executed",
                             "completed"
-                          ],
-                          "readOnly": true
+                          ]
                         },
                         "paid": {
                           "type": "boolean",
-                          "description": "An indicator that the payment was successfully captured.",
-                          "readOnly": true
+                          "description": "An indicator that the payment was successfully captured."
                         },
                         "payee": {
                           "title": "Payee",
@@ -264,8 +262,7 @@
                           "properties": {
                             "name": {
                               "type": "string",
-                              "description": "The payee's name",
-                              "readOnly": true
+                              "description": "The payee's name"
                             },
                             "plan": {
                               "title": "Plan",
@@ -275,7 +272,6 @@
                                 "sources": {
                                   "type": "array",
                                   "description": "The payee's suitable methods for the payment.",
-                                  "readOnly": true,
                                   "items": {
                                     "type": "object",
                                     "description": "A payee's payment method.",
@@ -287,18 +283,15 @@
                                         "properties": {
                                           "code": {
                                             "type": "string",
-                                            "description": "The code of the method.",
-                                            "readOnly": true
+                                            "description": "The code of the method."
                                           },
                                           "name": {
                                             "type": "string",
-                                            "description": "The name of the method.",
-                                            "readOnly": true
+                                            "description": "The name of the method."
                                           },
                                           "image": {
                                             "type": "string",
-                                            "description": "The URL of the method image.",
-                                            "readOnly": true
+                                            "description": "The URL of the method image."
                                           }
                                         }
                                       }
@@ -514,85 +507,69 @@
                           "properties": {
                             "submitUrl": {
                               "type": "string",
-                              "description": "The URL to redirect your customers to when the payment is claimed.",
-                              "readOnly": true
+                              "description": "The URL to redirect your customers to when the payment is claimed."
                             },
                             "approvalUrl": {
                               "type": "string",
-                              "description": "The URL where your customers are redirected to when the payment is submitted.",
-                              "readOnly": true
+                              "description": "The URL where your customers are redirected to when the payment is submitted."
                             },
                             "declineUrl": {
                               "type": "string",
-                              "description": "The URL where your customers are redirected to when the payment is declined on the third-party side.",
-                              "readOnly": true
+                              "description": "The URL where your customers are redirected to when the payment is declined on the third-party side."
                             },
                             "executeUrl": {
                               "type": "string",
-                              "description": "The URL where your customers are redirected to when the payment is approved on the third-party side.",
-                              "readOnly": true
+                              "description": "The URL where your customers are redirected to when the payment is approved on the third-party side."
                             },
                             "thirdId": {
                               "type": "string",
-                              "description": "A unique string to reference the payment on the third-party side.",
-                              "readOnly": true
+                              "description": "A unique string to reference the payment on the third-party side."
                             },
                             "events": {
                               "type": "array",
-                              "description": "The transactions received from the third-party side.",
-                              "readOnly": true
+                              "description": "The transactions received from the third-party side."
                             },
                             "intent": {
                               "type": "object",
-                              "description": "The payment data created on the third-party side.",
-                              "readOnly": true
+                              "description": "The payment data created on the third-party side."
                             },
                             "proof": {
                               "type": "object",
-                              "description": "The proof of identity of the payment approver.",
-                              "readOnly": true
+                              "description": "The proof of identity of the payment approver."
                             },
                             "signature": {
                               "type": "string",
-                              "description": "The signature of the event message received when the payment is completed.",
-                              "readOnly": true
+                              "description": "The signature of the webhook message received when the payment is completed."
                             }
                           }
                         },
                         "createdAt": {
                           "type": "string",
-                          "description": "Time at which the payment was created.",
-                          "readOnly": true
+                          "description": "Time at which the payment was created."
                         },
                         "claimedAt": {
                           "type": "string",
-                          "description": "Time at which the payment was claimed.",
-                          "readOnly": true
+                          "description": "Time at which the payment was claimed."
                         },
                         "canceledAt": {
                           "type": "string",
-                          "description": "Time at which the payment was canceled.",
-                          "readOnly": true
+                          "description": "Time at which the payment was canceled."
                         },
                         "submittedAt": {
                           "type": "string",
-                          "description": "Time at which the payment was submitted.",
-                          "readOnly": true
+                          "description": "Time at which the payment was submitted."
                         },
                         "approvedAt": {
                           "type": "string",
-                          "description": "Time at which the payment was approved.",
-                          "readOnly": true
+                          "description": "Time at which the payment was approved."
                         },
                         "executedAt": {
                           "type": "string",
-                          "description": "Time at which the payment was executed.",
-                          "readOnly": true
+                          "description": "Time at which the payment was executed."
                         },
                         "completedAt": {
                           "type": "string",
-                          "description": "Time at which the payment was completed.",
-                          "readOnly": true
+                          "description": "Time at which the payment was completed."
                         }
                       }
                     }
@@ -690,6 +667,7 @@
                   "properties": {
                     "data": {
                       "type": "array",
+                      "description": "The results data.",
                       "items": {
                         "title": "Payment",
                         "type": "object",
@@ -706,13 +684,11 @@
                               "approved",
                               "executed",
                               "completed"
-                            ],
-                            "readOnly": true
+                            ]
                           },
                           "paid": {
                             "type": "boolean",
-                            "description": "An indicator that the payment was successfully captured.",
-                            "readOnly": true
+                            "description": "An indicator that the payment was successfully captured."
                           },
                           "payee": {
                             "title": "Payee",
@@ -721,8 +697,7 @@
                             "properties": {
                               "name": {
                                 "type": "string",
-                                "description": "The payee's name",
-                                "readOnly": true
+                                "description": "The payee's name"
                               },
                               "plan": {
                                 "title": "Plan",
@@ -732,7 +707,6 @@
                                   "sources": {
                                     "type": "array",
                                     "description": "The payee's suitable methods for the payment.",
-                                    "readOnly": true,
                                     "items": {
                                       "type": "object",
                                       "description": "A payee's payment method.",
@@ -744,18 +718,15 @@
                                           "properties": {
                                             "code": {
                                               "type": "string",
-                                              "description": "The code of the method.",
-                                              "readOnly": true
+                                              "description": "The code of the method."
                                             },
                                             "name": {
                                               "type": "string",
-                                              "description": "The name of the method.",
-                                              "readOnly": true
+                                              "description": "The name of the method."
                                             },
                                             "image": {
                                               "type": "string",
-                                              "description": "The URL of the method image.",
-                                              "readOnly": true
+                                              "description": "The URL of the method image."
                                             }
                                           }
                                         }
@@ -971,85 +942,69 @@
                             "properties": {
                               "submitUrl": {
                                 "type": "string",
-                                "description": "The URL to redirect your customers to when the payment is claimed.",
-                                "readOnly": true
+                                "description": "The URL to redirect your customers to when the payment is claimed."
                               },
                               "approvalUrl": {
                                 "type": "string",
-                                "description": "The URL where your customers are redirected to when the payment is submitted.",
-                                "readOnly": true
+                                "description": "The URL where your customers are redirected to when the payment is submitted."
                               },
                               "declineUrl": {
                                 "type": "string",
-                                "description": "The URL where your customers are redirected to when the payment is declined on the third-party side.",
-                                "readOnly": true
+                                "description": "The URL where your customers are redirected to when the payment is declined on the third-party side."
                               },
                               "executeUrl": {
                                 "type": "string",
-                                "description": "The URL where your customers are redirected to when the payment is approved on the third-party side.",
-                                "readOnly": true
+                                "description": "The URL where your customers are redirected to when the payment is approved on the third-party side."
                               },
                               "thirdId": {
                                 "type": "string",
-                                "description": "A unique string to reference the payment on the third-party side.",
-                                "readOnly": true
+                                "description": "A unique string to reference the payment on the third-party side."
                               },
                               "events": {
                                 "type": "array",
-                                "description": "The transactions received from the third-party side.",
-                                "readOnly": true
+                                "description": "The transactions received from the third-party side."
                               },
                               "intent": {
                                 "type": "object",
-                                "description": "The payment data created on the third-party side.",
-                                "readOnly": true
+                                "description": "The payment data created on the third-party side."
                               },
                               "proof": {
                                 "type": "object",
-                                "description": "The proof of identity of the payment approver.",
-                                "readOnly": true
+                                "description": "The proof of identity of the payment approver."
                               },
                               "signature": {
                                 "type": "string",
-                                "description": "The signature of the event message received when the payment is completed.",
-                                "readOnly": true
+                                "description": "The signature of the webhook message received when the payment is completed."
                               }
                             }
                           },
                           "createdAt": {
                             "type": "string",
-                            "description": "Time at which the payment was created.",
-                            "readOnly": true
+                            "description": "Time at which the payment was created."
                           },
                           "claimedAt": {
                             "type": "string",
-                            "description": "Time at which the payment was claimed.",
-                            "readOnly": true
+                            "description": "Time at which the payment was claimed."
                           },
                           "canceledAt": {
                             "type": "string",
-                            "description": "Time at which the payment was canceled.",
-                            "readOnly": true
+                            "description": "Time at which the payment was canceled."
                           },
                           "submittedAt": {
                             "type": "string",
-                            "description": "Time at which the payment was submitted.",
-                            "readOnly": true
+                            "description": "Time at which the payment was submitted."
                           },
                           "approvedAt": {
                             "type": "string",
-                            "description": "Time at which the payment was approved.",
-                            "readOnly": true
+                            "description": "Time at which the payment was approved."
                           },
                           "executedAt": {
                             "type": "string",
-                            "description": "Time at which the payment was executed.",
-                            "readOnly": true
+                            "description": "Time at which the payment was executed."
                           },
                           "completedAt": {
                             "type": "string",
-                            "description": "Time at which the payment was completed.",
-                            "readOnly": true
+                            "description": "Time at which the payment was completed."
                           }
                         }
                       }
@@ -1067,11 +1022,11 @@
                       "description": "The limit of results."
                     },
                     "prev": {
-                      "type": "integer",
+                      "type": "string",
                       "description": "The URL of the immediate previous page of results."
                     },
                     "next": {
-                      "type": "integer",
+                      "type": "string",
                       "description": "The URL of the immediate next page of results."
                     }
                   }
@@ -1146,13 +1101,11 @@
                         "approved",
                         "executed",
                         "completed"
-                      ],
-                      "readOnly": true
+                      ]
                     },
                     "paid": {
                       "type": "boolean",
-                      "description": "An indicator that the payment was successfully captured.",
-                      "readOnly": true
+                      "description": "An indicator that the payment was successfully captured."
                     },
                     "payee": {
                       "title": "Payee",
@@ -1161,8 +1114,7 @@
                       "properties": {
                         "name": {
                           "type": "string",
-                          "description": "The payee's name",
-                          "readOnly": true
+                          "description": "The payee's name"
                         },
                         "plan": {
                           "title": "Plan",
@@ -1172,7 +1124,6 @@
                             "sources": {
                               "type": "array",
                               "description": "The payee's suitable methods for the payment.",
-                              "readOnly": true,
                               "items": {
                                 "type": "object",
                                 "description": "A payee's payment method.",
@@ -1184,18 +1135,15 @@
                                     "properties": {
                                       "code": {
                                         "type": "string",
-                                        "description": "The code of the method.",
-                                        "readOnly": true
+                                        "description": "The code of the method."
                                       },
                                       "name": {
                                         "type": "string",
-                                        "description": "The name of the method.",
-                                        "readOnly": true
+                                        "description": "The name of the method."
                                       },
                                       "image": {
                                         "type": "string",
-                                        "description": "The URL of the method image.",
-                                        "readOnly": true
+                                        "description": "The URL of the method image."
                                       }
                                     }
                                   }
@@ -1411,85 +1359,69 @@
                       "properties": {
                         "submitUrl": {
                           "type": "string",
-                          "description": "The URL to redirect your customers to when the payment is claimed.",
-                          "readOnly": true
+                          "description": "The URL to redirect your customers to when the payment is claimed."
                         },
                         "approvalUrl": {
                           "type": "string",
-                          "description": "The URL where your customers are redirected to when the payment is submitted.",
-                          "readOnly": true
+                          "description": "The URL where your customers are redirected to when the payment is submitted."
                         },
                         "declineUrl": {
                           "type": "string",
-                          "description": "The URL where your customers are redirected to when the payment is declined on the third-party side.",
-                          "readOnly": true
+                          "description": "The URL where your customers are redirected to when the payment is declined on the third-party side."
                         },
                         "executeUrl": {
                           "type": "string",
-                          "description": "The URL where your customers are redirected to when the payment is approved on the third-party side.",
-                          "readOnly": true
+                          "description": "The URL where your customers are redirected to when the payment is approved on the third-party side."
                         },
                         "thirdId": {
                           "type": "string",
-                          "description": "A unique string to reference the payment on the third-party side.",
-                          "readOnly": true
+                          "description": "A unique string to reference the payment on the third-party side."
                         },
                         "events": {
                           "type": "array",
-                          "description": "The transactions received from the third-party side.",
-                          "readOnly": true
+                          "description": "The transactions received from the third-party side."
                         },
                         "intent": {
                           "type": "object",
-                          "description": "The payment data created on the third-party side.",
-                          "readOnly": true
+                          "description": "The payment data created on the third-party side."
                         },
                         "proof": {
                           "type": "object",
-                          "description": "The proof of identity of the payment approver.",
-                          "readOnly": true
+                          "description": "The proof of identity of the payment approver."
                         },
                         "signature": {
                           "type": "string",
-                          "description": "The signature of the event message received when the payment is completed.",
-                          "readOnly": true
+                          "description": "The signature of the webhook message received when the payment is completed."
                         }
                       }
                     },
                     "createdAt": {
                       "type": "string",
-                      "description": "Time at which the payment was created.",
-                      "readOnly": true
+                      "description": "Time at which the payment was created."
                     },
                     "claimedAt": {
                       "type": "string",
-                      "description": "Time at which the payment was claimed.",
-                      "readOnly": true
+                      "description": "Time at which the payment was claimed."
                     },
                     "canceledAt": {
                       "type": "string",
-                      "description": "Time at which the payment was canceled.",
-                      "readOnly": true
+                      "description": "Time at which the payment was canceled."
                     },
                     "submittedAt": {
                       "type": "string",
-                      "description": "Time at which the payment was submitted.",
-                      "readOnly": true
+                      "description": "Time at which the payment was submitted."
                     },
                     "approvedAt": {
                       "type": "string",
-                      "description": "Time at which the payment was approved.",
-                      "readOnly": true
+                      "description": "Time at which the payment was approved."
                     },
                     "executedAt": {
                       "type": "string",
-                      "description": "Time at which the payment was executed.",
-                      "readOnly": true
+                      "description": "Time at which the payment was executed."
                     },
                     "completedAt": {
                       "type": "string",
-                      "description": "Time at which the payment was completed.",
-                      "readOnly": true
+                      "description": "Time at which the payment was completed."
                     }
                   }
                 }
@@ -1573,13 +1505,11 @@
                             "approved",
                             "executed",
                             "completed"
-                          ],
-                          "readOnly": true
+                          ]
                         },
                         "paid": {
                           "type": "boolean",
-                          "description": "An indicator that the payment was successfully captured.",
-                          "readOnly": true
+                          "description": "An indicator that the payment was successfully captured."
                         },
                         "payee": {
                           "title": "Payee",
@@ -1588,8 +1518,7 @@
                           "properties": {
                             "name": {
                               "type": "string",
-                              "description": "The payee's name",
-                              "readOnly": true
+                              "description": "The payee's name"
                             },
                             "plan": {
                               "title": "Plan",
@@ -1599,7 +1528,6 @@
                                 "sources": {
                                   "type": "array",
                                   "description": "The payee's suitable methods for the payment.",
-                                  "readOnly": true,
                                   "items": {
                                     "type": "object",
                                     "description": "A payee's payment method.",
@@ -1611,18 +1539,15 @@
                                         "properties": {
                                           "code": {
                                             "type": "string",
-                                            "description": "The code of the method.",
-                                            "readOnly": true
+                                            "description": "The code of the method."
                                           },
                                           "name": {
                                             "type": "string",
-                                            "description": "The name of the method.",
-                                            "readOnly": true
+                                            "description": "The name of the method."
                                           },
                                           "image": {
                                             "type": "string",
-                                            "description": "The URL of the method image.",
-                                            "readOnly": true
+                                            "description": "The URL of the method image."
                                           }
                                         }
                                       }
@@ -1838,85 +1763,69 @@
                           "properties": {
                             "submitUrl": {
                               "type": "string",
-                              "description": "The URL to redirect your customers to when the payment is claimed.",
-                              "readOnly": true
+                              "description": "The URL to redirect your customers to when the payment is claimed."
                             },
                             "approvalUrl": {
                               "type": "string",
-                              "description": "The URL where your customers are redirected to when the payment is submitted.",
-                              "readOnly": true
+                              "description": "The URL where your customers are redirected to when the payment is submitted."
                             },
                             "declineUrl": {
                               "type": "string",
-                              "description": "The URL where your customers are redirected to when the payment is declined on the third-party side.",
-                              "readOnly": true
+                              "description": "The URL where your customers are redirected to when the payment is declined on the third-party side."
                             },
                             "executeUrl": {
                               "type": "string",
-                              "description": "The URL where your customers are redirected to when the payment is approved on the third-party side.",
-                              "readOnly": true
+                              "description": "The URL where your customers are redirected to when the payment is approved on the third-party side."
                             },
                             "thirdId": {
                               "type": "string",
-                              "description": "A unique string to reference the payment on the third-party side.",
-                              "readOnly": true
+                              "description": "A unique string to reference the payment on the third-party side."
                             },
                             "events": {
                               "type": "array",
-                              "description": "The transactions received from the third-party side.",
-                              "readOnly": true
+                              "description": "The transactions received from the third-party side."
                             },
                             "intent": {
                               "type": "object",
-                              "description": "The payment data created on the third-party side.",
-                              "readOnly": true
+                              "description": "The payment data created on the third-party side."
                             },
                             "proof": {
                               "type": "object",
-                              "description": "The proof of identity of the payment approver.",
-                              "readOnly": true
+                              "description": "The proof of identity of the payment approver."
                             },
                             "signature": {
                               "type": "string",
-                              "description": "The signature of the event message received when the payment is completed.",
-                              "readOnly": true
+                              "description": "The signature of the webhook message received when the payment is completed."
                             }
                           }
                         },
                         "createdAt": {
                           "type": "string",
-                          "description": "Time at which the payment was created.",
-                          "readOnly": true
+                          "description": "Time at which the payment was created."
                         },
                         "claimedAt": {
                           "type": "string",
-                          "description": "Time at which the payment was claimed.",
-                          "readOnly": true
+                          "description": "Time at which the payment was claimed."
                         },
                         "canceledAt": {
                           "type": "string",
-                          "description": "Time at which the payment was canceled.",
-                          "readOnly": true
+                          "description": "Time at which the payment was canceled."
                         },
                         "submittedAt": {
                           "type": "string",
-                          "description": "Time at which the payment was submitted.",
-                          "readOnly": true
+                          "description": "Time at which the payment was submitted."
                         },
                         "approvedAt": {
                           "type": "string",
-                          "description": "Time at which the payment was approved.",
-                          "readOnly": true
+                          "description": "Time at which the payment was approved."
                         },
                         "executedAt": {
                           "type": "string",
-                          "description": "Time at which the payment was executed.",
-                          "readOnly": true
+                          "description": "Time at which the payment was executed."
                         },
                         "completedAt": {
                           "type": "string",
-                          "description": "Time at which the payment was completed.",
-                          "readOnly": true
+                          "description": "Time at which the payment was completed."
                         }
                       }
                     }
@@ -2002,13 +1911,11 @@
                             "approved",
                             "executed",
                             "completed"
-                          ],
-                          "readOnly": true
+                          ]
                         },
                         "paid": {
                           "type": "boolean",
-                          "description": "An indicator that the payment was successfully captured.",
-                          "readOnly": true
+                          "description": "An indicator that the payment was successfully captured."
                         },
                         "payee": {
                           "title": "Payee",
@@ -2017,8 +1924,7 @@
                           "properties": {
                             "name": {
                               "type": "string",
-                              "description": "The payee's name",
-                              "readOnly": true
+                              "description": "The payee's name"
                             },
                             "plan": {
                               "title": "Plan",
@@ -2028,7 +1934,6 @@
                                 "sources": {
                                   "type": "array",
                                   "description": "The payee's suitable methods for the payment.",
-                                  "readOnly": true,
                                   "items": {
                                     "type": "object",
                                     "description": "A payee's payment method.",
@@ -2040,18 +1945,15 @@
                                         "properties": {
                                           "code": {
                                             "type": "string",
-                                            "description": "The code of the method.",
-                                            "readOnly": true
+                                            "description": "The code of the method."
                                           },
                                           "name": {
                                             "type": "string",
-                                            "description": "The name of the method.",
-                                            "readOnly": true
+                                            "description": "The name of the method."
                                           },
                                           "image": {
                                             "type": "string",
-                                            "description": "The URL of the method image.",
-                                            "readOnly": true
+                                            "description": "The URL of the method image."
                                           }
                                         }
                                       }
@@ -2267,85 +2169,69 @@
                           "properties": {
                             "submitUrl": {
                               "type": "string",
-                              "description": "The URL to redirect your customers to when the payment is claimed.",
-                              "readOnly": true
+                              "description": "The URL to redirect your customers to when the payment is claimed."
                             },
                             "approvalUrl": {
                               "type": "string",
-                              "description": "The URL where your customers are redirected to when the payment is submitted.",
-                              "readOnly": true
+                              "description": "The URL where your customers are redirected to when the payment is submitted."
                             },
                             "declineUrl": {
                               "type": "string",
-                              "description": "The URL where your customers are redirected to when the payment is declined on the third-party side.",
-                              "readOnly": true
+                              "description": "The URL where your customers are redirected to when the payment is declined on the third-party side."
                             },
                             "executeUrl": {
                               "type": "string",
-                              "description": "The URL where your customers are redirected to when the payment is approved on the third-party side.",
-                              "readOnly": true
+                              "description": "The URL where your customers are redirected to when the payment is approved on the third-party side."
                             },
                             "thirdId": {
                               "type": "string",
-                              "description": "A unique string to reference the payment on the third-party side.",
-                              "readOnly": true
+                              "description": "A unique string to reference the payment on the third-party side."
                             },
                             "events": {
                               "type": "array",
-                              "description": "The transactions received from the third-party side.",
-                              "readOnly": true
+                              "description": "The transactions received from the third-party side."
                             },
                             "intent": {
                               "type": "object",
-                              "description": "The payment data created on the third-party side.",
-                              "readOnly": true
+                              "description": "The payment data created on the third-party side."
                             },
                             "proof": {
                               "type": "object",
-                              "description": "The proof of identity of the payment approver.",
-                              "readOnly": true
+                              "description": "The proof of identity of the payment approver."
                             },
                             "signature": {
                               "type": "string",
-                              "description": "The signature of the event message received when the payment is completed.",
-                              "readOnly": true
+                              "description": "The signature of the webhook message received when the payment is completed."
                             }
                           }
                         },
                         "createdAt": {
                           "type": "string",
-                          "description": "Time at which the payment was created.",
-                          "readOnly": true
+                          "description": "Time at which the payment was created."
                         },
                         "claimedAt": {
                           "type": "string",
-                          "description": "Time at which the payment was claimed.",
-                          "readOnly": true
+                          "description": "Time at which the payment was claimed."
                         },
                         "canceledAt": {
                           "type": "string",
-                          "description": "Time at which the payment was canceled.",
-                          "readOnly": true
+                          "description": "Time at which the payment was canceled."
                         },
                         "submittedAt": {
                           "type": "string",
-                          "description": "Time at which the payment was submitted.",
-                          "readOnly": true
+                          "description": "Time at which the payment was submitted."
                         },
                         "approvedAt": {
                           "type": "string",
-                          "description": "Time at which the payment was approved.",
-                          "readOnly": true
+                          "description": "Time at which the payment was approved."
                         },
                         "executedAt": {
                           "type": "string",
-                          "description": "Time at which the payment was executed.",
-                          "readOnly": true
+                          "description": "Time at which the payment was executed."
                         },
                         "completedAt": {
                           "type": "string",
-                          "description": "Time at which the payment was completed.",
-                          "readOnly": true
+                          "description": "Time at which the payment was completed."
                         }
                       }
                     }
@@ -2498,9 +2384,9 @@
         ]
       }
     },
-    "/v1/events/paypal": {
+    "/v1/webhooks/paypal": {
       "post": {
-        "operationId": "EventController_paypal",
+        "operationId": "WebhookController_paypal",
         "summary": "Complete a PayPal payment",
         "parameters": [
           {
@@ -2514,17 +2400,34 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         },
         "tags": [
-          "Events"
+          "Webhooks"
+        ],
+        "security": [
+          {
+            "Basic": []
+          }
         ]
       }
     },
-    "/v1/events/stripe": {
+    "/v1/webhooks/stripe": {
       "post": {
-        "operationId": "EventController_stripe",
+        "operationId": "WebhookController_stripe",
         "summary": "Complete a Stripe payment",
         "parameters": [
           {
@@ -2538,11 +2441,28 @@
         ],
         "responses": {
           "200": {
-            "description": ""
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         },
         "tags": [
-          "Events"
+          "Webhooks"
+        ],
+        "security": [
+          {
+            "Basic": []
+          }
         ]
       }
     }
@@ -2555,12 +2475,12 @@
   },
   "tags": [
     {
-      "name": "Events",
-      "description": "The endpoints for handling events"
-    },
-    {
       "name": "Payments",
       "description": "The endpoints for managing payments"
+    },
+    {
+      "name": "Webhooks",
+      "description": "The endpoints for handling webhooks"
     }
   ],
   "servers": [],
