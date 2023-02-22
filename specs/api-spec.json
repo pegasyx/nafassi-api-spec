@@ -596,7 +596,7 @@
         ],
         "security": [
           {
-            "Bearer": []
+            "HttpBearer": []
           }
         ]
       },
@@ -1052,7 +1052,7 @@
         ],
         "security": [
           {
-            "Bearer": []
+            "HttpBearer": []
           }
         ]
       }
@@ -1449,7 +1449,7 @@
         ],
         "security": [
           {
-            "Bearer": []
+            "HttpBearer": []
           }
         ]
       }
@@ -1855,7 +1855,7 @@
         ],
         "security": [
           {
-            "Bearer": []
+            "HttpBearer": []
           }
         ]
       }
@@ -2261,7 +2261,7 @@
         ],
         "security": [
           {
-            "Bearer": []
+            "HttpBearer": []
           }
         ]
       }
@@ -2320,7 +2320,7 @@
         ],
         "security": [
           {
-            "URL": []
+            "ApiKey": []
           }
         ]
       }
@@ -2379,7 +2379,7 @@
         ],
         "security": [
           {
-            "URL": []
+            "ApiKey": []
           }
         ]
       }
@@ -2420,7 +2420,7 @@
         ],
         "security": [
           {
-            "Basic": []
+            "HttpBasic": []
           }
         ]
       }
@@ -2461,7 +2461,7 @@
         ],
         "security": [
           {
-            "Basic": []
+            "HttpBasic": []
           }
         ]
       }
@@ -2486,22 +2486,22 @@
   "servers": [],
   "components": {
     "securitySchemes": {
-      "Basic": {
-        "type": "http",
-        "scheme": "basic",
-        "description": "HTTP Basic authentication"
-      },
-      "Bearer": {
-        "type": "http",
-        "scheme": "bearer",
-        "bearerFormat": "JWT",
-        "description": "HTTP Bearer authentication with JWT token"
-      },
-      "URL": {
+      "ApiKey": {
         "type": "apiKey",
         "in": "query",
         "name": "token",
         "description": "API Key authentication with URL token"
+      },
+      "HttpBasic": {
+        "type": "http",
+        "scheme": "basic",
+        "description": "HTTP Basic authentication"
+      },
+      "HttpBearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT",
+        "description": "HTTP Bearer authentication with JWT token"
       }
     },
     "schemas": {}
