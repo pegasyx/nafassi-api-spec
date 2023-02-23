@@ -187,14 +187,6 @@
                     "type": "string",
                     "description": "A note to attach to the payment. This can be additional information."
                   },
-                  "cancelUrl": {
-                    "type": "string",
-                    "description": "The URL to redirect your customers to when the payment is canceled."
-                  },
-                  "successUrl": {
-                    "type": "string",
-                    "description": "The URL to redirect your customers to when the payment is executed."
-                  },
                   "plan": {
                     "title": "Plan",
                     "type": "object",
@@ -210,6 +202,14 @@
                         ]
                       }
                     }
+                  },
+                  "cancelUrl": {
+                    "type": "string",
+                    "description": "The URL to redirect your customers to when the payment is canceled."
+                  },
+                  "successUrl": {
+                    "type": "string",
+                    "description": "The URL to redirect your customers to when the payment is executed."
                   }
                 },
                 "required": [
@@ -254,6 +254,88 @@
                         "paid": {
                           "type": "boolean",
                           "description": "An indicator that the payment was successfully captured."
+                        },
+                        "context": {
+                          "title": "Context",
+                          "type": "object",
+                          "description": "Contextual data.",
+                          "properties": {
+                            "locale": {
+                              "type": "string",
+                              "description": "A language code. This should be an ISO 639-1 Standard for language codes.",
+                              "pattern": "/^[a-z]{2}-[A-Z]{2}$/"
+                            }
+                          }
+                        },
+                        "payer": {
+                          "title": "Payer",
+                          "type": "object",
+                          "description": "The customer's billing data.",
+                          "properties": {
+                            "firstName": {
+                              "type": "string",
+                              "description": "The customer’s first name."
+                            },
+                            "lastName": {
+                              "type": "string",
+                              "description": "The customer’s last name."
+                            },
+                            "email": {
+                              "type": "string",
+                              "description": "The customer’s email."
+                            },
+                            "phone": {
+                              "type": "string",
+                              "description": "The customer’s phone number. This must be E.164 Standard for international telephone number",
+                              "pattern": "/^\\+[0-9]+$/"
+                            },
+                            "address": {
+                              "title": "Address",
+                              "type": "object",
+                              "description": "The customer’s address.",
+                              "properties": {
+                                "line1": {
+                                  "type": "string",
+                                  "description": "The address line 1 (e.g., street number, street name). This field needs to pass the canonical form of the address"
+                                },
+                                "line2": {
+                                  "type": "string",
+                                  "description": "The address line 2. This can be additional address data (e.g., apartment, suite, unit, or building)."
+                                },
+                                "line3": {
+                                  "type": "string",
+                                  "description": "The address line 3. This can be more additional address data if needed."
+                                },
+                                "city": {
+                                  "type": "string",
+                                  "description": "The address city name."
+                                },
+                                "state": {
+                                  "type": "string",
+                                  "description": "The address state name."
+                                },
+                                "postcode": {
+                                  "type": "string",
+                                  "description": "The address ZIP or postal code."
+                                },
+                                "country": {
+                                  "type": "string",
+                                  "description": "The address country code. This must be an ISO 3166-1 alpha-2 Standard (two-letters) for country codes."
+                                }
+                              },
+                              "required": [
+                                "line1",
+                                "city",
+                                "country"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "firstName",
+                            "lastName",
+                            "email",
+                            "address"
+                          ]
                         },
                         "payee": {
                           "title": "Payee",
@@ -302,203 +384,109 @@
                             }
                           }
                         },
-                        "claim": {
-                          "title": "Claim",
+                        "purchase": {
+                          "title": "Purchase",
                           "type": "object",
-                          "description": "The payment request.",
+                          "description": "The customer's purchase data.",
                           "properties": {
-                            "context": {
-                              "title": "Context",
+                            "total": {
+                              "title": "Amount",
                               "type": "object",
-                              "description": "Contextual data.",
+                              "description": "The total of the purchase",
                               "properties": {
-                                "locale": {
+                                "value": {
                                   "type": "string",
-                                  "description": "A language code. This should be an ISO 639-1 Standard for language codes.",
-                                  "pattern": "/^[a-z]{2}-[A-Z]{2}$/"
-                                }
-                              }
-                            },
-                            "payer": {
-                              "title": "Payer",
-                              "type": "object",
-                              "description": "The customer's billing data.",
-                              "properties": {
-                                "firstName": {
-                                  "type": "string",
-                                  "description": "The customer’s first name."
+                                  "description": "The value of the amount.\n- An integer for currencies that are not typically fractional\n- A decimal fraction for currencies that are subdivided into thousandths"
                                 },
-                                "lastName": {
+                                "currency": {
                                   "type": "string",
-                                  "description": "The customer’s last name."
-                                },
-                                "email": {
-                                  "type": "string",
-                                  "description": "The customer’s email."
-                                },
-                                "phone": {
-                                  "type": "string",
-                                  "description": "The customer’s phone number. This must be E.164 Standard for international telephone number",
-                                  "pattern": "/^\\+[0-9]+$/"
-                                },
-                                "address": {
-                                  "title": "Address",
-                                  "type": "object",
-                                  "description": "The customer’s address.",
-                                  "properties": {
-                                    "line1": {
-                                      "type": "string",
-                                      "description": "The address line 1 (e.g., street number, street name). This field needs to pass the canonical form of the address"
-                                    },
-                                    "line2": {
-                                      "type": "string",
-                                      "description": "The address line 2. This can be additional address data (e.g., apartment, suite, unit, or building)."
-                                    },
-                                    "line3": {
-                                      "type": "string",
-                                      "description": "The address line 3. This can be more additional address data if needed."
-                                    },
-                                    "city": {
-                                      "type": "string",
-                                      "description": "The address city name."
-                                    },
-                                    "state": {
-                                      "type": "string",
-                                      "description": "The address state name."
-                                    },
-                                    "postcode": {
-                                      "type": "string",
-                                      "description": "The address ZIP or postal code."
-                                    },
-                                    "country": {
-                                      "type": "string",
-                                      "description": "The address country code. This must be an ISO 3166-1 alpha-2 Standard (two-letters) for country codes."
-                                    }
-                                  },
-                                  "required": [
-                                    "line1",
-                                    "city",
-                                    "country"
-                                  ]
+                                  "description": "The currency code of the amount. This must be an ISO 4217 Standard (three letters) for currency codes."
                                 }
                               },
                               "required": [
-                                "firstName",
-                                "lastName",
-                                "email",
-                                "address"
+                                "value",
+                                "currency"
                               ]
                             },
-                            "purchase": {
-                              "title": "Purchase",
-                              "type": "object",
-                              "description": "The customer's purchase data.",
-                              "properties": {
-                                "total": {
-                                  "title": "Amount",
-                                  "type": "object",
-                                  "description": "The total of the purchase",
-                                  "properties": {
-                                    "value": {
-                                      "type": "string",
-                                      "description": "The value of the amount.\n- An integer for currencies that are not typically fractional\n- A decimal fraction for currencies that are subdivided into thousandths"
-                                    },
-                                    "currency": {
-                                      "type": "string",
-                                      "description": "The currency code of the amount. This must be an ISO 4217 Standard (three letters) for currency codes."
-                                    }
+                            "items": {
+                              "type": "array",
+                              "description": "The items of the purchase.",
+                              "items": {
+                                "title": "PurchaseItem",
+                                "type": "object",
+                                "description": "A customer's purchase item.",
+                                "properties": {
+                                  "name": {
+                                    "type": "string",
+                                    "description": "The name of the item."
                                   },
-                                  "required": [
-                                    "value",
-                                    "currency"
-                                  ]
-                                },
-                                "items": {
-                                  "type": "array",
-                                  "description": "The items of the purchase.",
-                                  "items": {
-                                    "title": "PurchaseItem",
+                                  "quantity": {
+                                    "type": "string",
+                                    "description": "The quantity to purchase for the item."
+                                  },
+                                  "amount": {
+                                    "title": "Amount",
                                     "type": "object",
-                                    "description": "A customer's purchase item.",
+                                    "description": "The total of the item",
                                     "properties": {
-                                      "name": {
+                                      "value": {
                                         "type": "string",
-                                        "description": "The name of the item."
+                                        "description": "The value of the amount.\n- An integer for currencies that are not typically fractional\n- A decimal fraction for currencies that are subdivided into thousandths"
                                       },
-                                      "quantity": {
+                                      "currency": {
                                         "type": "string",
-                                        "description": "The quantity to purchase for the item."
-                                      },
-                                      "amount": {
-                                        "title": "Amount",
-                                        "type": "object",
-                                        "description": "The total of the item",
-                                        "properties": {
-                                          "value": {
-                                            "type": "string",
-                                            "description": "The value of the amount.\n- An integer for currencies that are not typically fractional\n- A decimal fraction for currencies that are subdivided into thousandths"
-                                          },
-                                          "currency": {
-                                            "type": "string",
-                                            "description": "The currency code of the amount. This must be an ISO 4217 Standard (three letters) for currency codes."
-                                          }
-                                        },
-                                        "required": [
-                                          "value",
-                                          "currency"
-                                        ]
+                                        "description": "The currency code of the amount. This must be an ISO 4217 Standard (three letters) for currency codes."
                                       }
                                     },
                                     "required": [
-                                      "name",
-                                      "quantity",
-                                      "amount"
+                                      "value",
+                                      "currency"
                                     ]
                                   }
-                                }
-                              },
-                              "required": [
-                                "total"
-                              ]
-                            },
-                            "reference": {
-                              "type": "string",
-                              "description": "A unique string to reference the payment. This can be an order ID, or similar, and can be used to reconcile the payment with your internal systems."
-                            },
-                            "note": {
-                              "type": "string",
-                              "description": "A note to attach to the payment. This can be additional information."
-                            },
-                            "cancelUrl": {
-                              "type": "string",
-                              "description": "The URL to redirect your customers to when the payment is canceled."
-                            },
-                            "successUrl": {
-                              "type": "string",
-                              "description": "The URL to redirect your customers to when the payment is executed."
-                            },
-                            "plan": {
-                              "title": "Plan",
-                              "type": "object",
-                              "description": "The customer's payment plan.",
-                              "properties": {
-                                "source": {
-                                  "type": "string",
-                                  "description": "The customer's suited method for the payment.",
-                                  "enum": [
-                                    "HOL",
-                                    "PYP",
-                                    "STR"
-                                  ]
-                                }
+                                },
+                                "required": [
+                                  "name",
+                                  "quantity",
+                                  "amount"
+                                ]
                               }
                             }
                           },
                           "required": [
-                            "purchase",
-                            "cancelUrl",
-                            "successUrl"
+                            "total"
                           ]
+                        },
+                        "reference": {
+                          "type": "string",
+                          "description": "A unique string to reference the payment. This can be an order ID, or similar, and can be used to reconcile the payment with your internal systems."
+                        },
+                        "note": {
+                          "type": "string",
+                          "description": "A note to attach to the payment. This can be additional information."
+                        },
+                        "cancelUrl": {
+                          "type": "string",
+                          "description": "The URL to redirect your customers to when the payment is canceled."
+                        },
+                        "successUrl": {
+                          "type": "string",
+                          "description": "The URL to redirect your customers to when the payment is executed."
+                        },
+                        "plan": {
+                          "title": "Plan",
+                          "type": "object",
+                          "description": "The customer's payment plan.",
+                          "properties": {
+                            "source": {
+                              "type": "string",
+                              "description": "The customer's suited method for the payment.",
+                              "enum": [
+                                "HOL",
+                                "PYP",
+                                "STR"
+                              ]
+                            }
+                          }
                         },
                         "billing": {
                           "title": "Billing",
@@ -571,7 +559,12 @@
                           "type": "string",
                           "description": "Time at which the payment was completed."
                         }
-                      }
+                      },
+                      "required": [
+                        "purchase",
+                        "cancelUrl",
+                        "successUrl"
+                      ]
                     }
                   }
                 }
@@ -690,6 +683,88 @@
                             "type": "boolean",
                             "description": "An indicator that the payment was successfully captured."
                           },
+                          "context": {
+                            "title": "Context",
+                            "type": "object",
+                            "description": "Contextual data.",
+                            "properties": {
+                              "locale": {
+                                "type": "string",
+                                "description": "A language code. This should be an ISO 639-1 Standard for language codes.",
+                                "pattern": "/^[a-z]{2}-[A-Z]{2}$/"
+                              }
+                            }
+                          },
+                          "payer": {
+                            "title": "Payer",
+                            "type": "object",
+                            "description": "The customer's billing data.",
+                            "properties": {
+                              "firstName": {
+                                "type": "string",
+                                "description": "The customer’s first name."
+                              },
+                              "lastName": {
+                                "type": "string",
+                                "description": "The customer’s last name."
+                              },
+                              "email": {
+                                "type": "string",
+                                "description": "The customer’s email."
+                              },
+                              "phone": {
+                                "type": "string",
+                                "description": "The customer’s phone number. This must be E.164 Standard for international telephone number",
+                                "pattern": "/^\\+[0-9]+$/"
+                              },
+                              "address": {
+                                "title": "Address",
+                                "type": "object",
+                                "description": "The customer’s address.",
+                                "properties": {
+                                  "line1": {
+                                    "type": "string",
+                                    "description": "The address line 1 (e.g., street number, street name). This field needs to pass the canonical form of the address"
+                                  },
+                                  "line2": {
+                                    "type": "string",
+                                    "description": "The address line 2. This can be additional address data (e.g., apartment, suite, unit, or building)."
+                                  },
+                                  "line3": {
+                                    "type": "string",
+                                    "description": "The address line 3. This can be more additional address data if needed."
+                                  },
+                                  "city": {
+                                    "type": "string",
+                                    "description": "The address city name."
+                                  },
+                                  "state": {
+                                    "type": "string",
+                                    "description": "The address state name."
+                                  },
+                                  "postcode": {
+                                    "type": "string",
+                                    "description": "The address ZIP or postal code."
+                                  },
+                                  "country": {
+                                    "type": "string",
+                                    "description": "The address country code. This must be an ISO 3166-1 alpha-2 Standard (two-letters) for country codes."
+                                  }
+                                },
+                                "required": [
+                                  "line1",
+                                  "city",
+                                  "country"
+                                ]
+                              }
+                            },
+                            "required": [
+                              "firstName",
+                              "lastName",
+                              "email",
+                              "address"
+                            ]
+                          },
                           "payee": {
                             "title": "Payee",
                             "type": "object",
@@ -737,203 +812,109 @@
                               }
                             }
                           },
-                          "claim": {
-                            "title": "Claim",
+                          "purchase": {
+                            "title": "Purchase",
                             "type": "object",
-                            "description": "The payment request.",
+                            "description": "The customer's purchase data.",
                             "properties": {
-                              "context": {
-                                "title": "Context",
+                              "total": {
+                                "title": "Amount",
                                 "type": "object",
-                                "description": "Contextual data.",
+                                "description": "The total of the purchase",
                                 "properties": {
-                                  "locale": {
+                                  "value": {
                                     "type": "string",
-                                    "description": "A language code. This should be an ISO 639-1 Standard for language codes.",
-                                    "pattern": "/^[a-z]{2}-[A-Z]{2}$/"
-                                  }
-                                }
-                              },
-                              "payer": {
-                                "title": "Payer",
-                                "type": "object",
-                                "description": "The customer's billing data.",
-                                "properties": {
-                                  "firstName": {
-                                    "type": "string",
-                                    "description": "The customer’s first name."
+                                    "description": "The value of the amount.\n- An integer for currencies that are not typically fractional\n- A decimal fraction for currencies that are subdivided into thousandths"
                                   },
-                                  "lastName": {
+                                  "currency": {
                                     "type": "string",
-                                    "description": "The customer’s last name."
-                                  },
-                                  "email": {
-                                    "type": "string",
-                                    "description": "The customer’s email."
-                                  },
-                                  "phone": {
-                                    "type": "string",
-                                    "description": "The customer’s phone number. This must be E.164 Standard for international telephone number",
-                                    "pattern": "/^\\+[0-9]+$/"
-                                  },
-                                  "address": {
-                                    "title": "Address",
-                                    "type": "object",
-                                    "description": "The customer’s address.",
-                                    "properties": {
-                                      "line1": {
-                                        "type": "string",
-                                        "description": "The address line 1 (e.g., street number, street name). This field needs to pass the canonical form of the address"
-                                      },
-                                      "line2": {
-                                        "type": "string",
-                                        "description": "The address line 2. This can be additional address data (e.g., apartment, suite, unit, or building)."
-                                      },
-                                      "line3": {
-                                        "type": "string",
-                                        "description": "The address line 3. This can be more additional address data if needed."
-                                      },
-                                      "city": {
-                                        "type": "string",
-                                        "description": "The address city name."
-                                      },
-                                      "state": {
-                                        "type": "string",
-                                        "description": "The address state name."
-                                      },
-                                      "postcode": {
-                                        "type": "string",
-                                        "description": "The address ZIP or postal code."
-                                      },
-                                      "country": {
-                                        "type": "string",
-                                        "description": "The address country code. This must be an ISO 3166-1 alpha-2 Standard (two-letters) for country codes."
-                                      }
-                                    },
-                                    "required": [
-                                      "line1",
-                                      "city",
-                                      "country"
-                                    ]
+                                    "description": "The currency code of the amount. This must be an ISO 4217 Standard (three letters) for currency codes."
                                   }
                                 },
                                 "required": [
-                                  "firstName",
-                                  "lastName",
-                                  "email",
-                                  "address"
+                                  "value",
+                                  "currency"
                                 ]
                               },
-                              "purchase": {
-                                "title": "Purchase",
-                                "type": "object",
-                                "description": "The customer's purchase data.",
-                                "properties": {
-                                  "total": {
-                                    "title": "Amount",
-                                    "type": "object",
-                                    "description": "The total of the purchase",
-                                    "properties": {
-                                      "value": {
-                                        "type": "string",
-                                        "description": "The value of the amount.\n- An integer for currencies that are not typically fractional\n- A decimal fraction for currencies that are subdivided into thousandths"
-                                      },
-                                      "currency": {
-                                        "type": "string",
-                                        "description": "The currency code of the amount. This must be an ISO 4217 Standard (three letters) for currency codes."
-                                      }
+                              "items": {
+                                "type": "array",
+                                "description": "The items of the purchase.",
+                                "items": {
+                                  "title": "PurchaseItem",
+                                  "type": "object",
+                                  "description": "A customer's purchase item.",
+                                  "properties": {
+                                    "name": {
+                                      "type": "string",
+                                      "description": "The name of the item."
                                     },
-                                    "required": [
-                                      "value",
-                                      "currency"
-                                    ]
-                                  },
-                                  "items": {
-                                    "type": "array",
-                                    "description": "The items of the purchase.",
-                                    "items": {
-                                      "title": "PurchaseItem",
+                                    "quantity": {
+                                      "type": "string",
+                                      "description": "The quantity to purchase for the item."
+                                    },
+                                    "amount": {
+                                      "title": "Amount",
                                       "type": "object",
-                                      "description": "A customer's purchase item.",
+                                      "description": "The total of the item",
                                       "properties": {
-                                        "name": {
+                                        "value": {
                                           "type": "string",
-                                          "description": "The name of the item."
+                                          "description": "The value of the amount.\n- An integer for currencies that are not typically fractional\n- A decimal fraction for currencies that are subdivided into thousandths"
                                         },
-                                        "quantity": {
+                                        "currency": {
                                           "type": "string",
-                                          "description": "The quantity to purchase for the item."
-                                        },
-                                        "amount": {
-                                          "title": "Amount",
-                                          "type": "object",
-                                          "description": "The total of the item",
-                                          "properties": {
-                                            "value": {
-                                              "type": "string",
-                                              "description": "The value of the amount.\n- An integer for currencies that are not typically fractional\n- A decimal fraction for currencies that are subdivided into thousandths"
-                                            },
-                                            "currency": {
-                                              "type": "string",
-                                              "description": "The currency code of the amount. This must be an ISO 4217 Standard (three letters) for currency codes."
-                                            }
-                                          },
-                                          "required": [
-                                            "value",
-                                            "currency"
-                                          ]
+                                          "description": "The currency code of the amount. This must be an ISO 4217 Standard (three letters) for currency codes."
                                         }
                                       },
                                       "required": [
-                                        "name",
-                                        "quantity",
-                                        "amount"
+                                        "value",
+                                        "currency"
                                       ]
                                     }
-                                  }
-                                },
-                                "required": [
-                                  "total"
-                                ]
-                              },
-                              "reference": {
-                                "type": "string",
-                                "description": "A unique string to reference the payment. This can be an order ID, or similar, and can be used to reconcile the payment with your internal systems."
-                              },
-                              "note": {
-                                "type": "string",
-                                "description": "A note to attach to the payment. This can be additional information."
-                              },
-                              "cancelUrl": {
-                                "type": "string",
-                                "description": "The URL to redirect your customers to when the payment is canceled."
-                              },
-                              "successUrl": {
-                                "type": "string",
-                                "description": "The URL to redirect your customers to when the payment is executed."
-                              },
-                              "plan": {
-                                "title": "Plan",
-                                "type": "object",
-                                "description": "The customer's payment plan.",
-                                "properties": {
-                                  "source": {
-                                    "type": "string",
-                                    "description": "The customer's suited method for the payment.",
-                                    "enum": [
-                                      "HOL",
-                                      "PYP",
-                                      "STR"
-                                    ]
-                                  }
+                                  },
+                                  "required": [
+                                    "name",
+                                    "quantity",
+                                    "amount"
+                                  ]
                                 }
                               }
                             },
                             "required": [
-                              "purchase",
-                              "cancelUrl",
-                              "successUrl"
+                              "total"
                             ]
+                          },
+                          "reference": {
+                            "type": "string",
+                            "description": "A unique string to reference the payment. This can be an order ID, or similar, and can be used to reconcile the payment with your internal systems."
+                          },
+                          "note": {
+                            "type": "string",
+                            "description": "A note to attach to the payment. This can be additional information."
+                          },
+                          "cancelUrl": {
+                            "type": "string",
+                            "description": "The URL to redirect your customers to when the payment is canceled."
+                          },
+                          "successUrl": {
+                            "type": "string",
+                            "description": "The URL to redirect your customers to when the payment is executed."
+                          },
+                          "plan": {
+                            "title": "Plan",
+                            "type": "object",
+                            "description": "The customer's payment plan.",
+                            "properties": {
+                              "source": {
+                                "type": "string",
+                                "description": "The customer's suited method for the payment.",
+                                "enum": [
+                                  "HOL",
+                                  "PYP",
+                                  "STR"
+                                ]
+                              }
+                            }
                           },
                           "billing": {
                             "title": "Billing",
@@ -1006,7 +987,12 @@
                             "type": "string",
                             "description": "Time at which the payment was completed."
                           }
-                        }
+                        },
+                        "required": [
+                          "purchase",
+                          "cancelUrl",
+                          "successUrl"
+                        ]
                       }
                     },
                     "total": {
@@ -1107,6 +1093,88 @@
                       "type": "boolean",
                       "description": "An indicator that the payment was successfully captured."
                     },
+                    "context": {
+                      "title": "Context",
+                      "type": "object",
+                      "description": "Contextual data.",
+                      "properties": {
+                        "locale": {
+                          "type": "string",
+                          "description": "A language code. This should be an ISO 639-1 Standard for language codes.",
+                          "pattern": "/^[a-z]{2}-[A-Z]{2}$/"
+                        }
+                      }
+                    },
+                    "payer": {
+                      "title": "Payer",
+                      "type": "object",
+                      "description": "The customer's billing data.",
+                      "properties": {
+                        "firstName": {
+                          "type": "string",
+                          "description": "The customer’s first name."
+                        },
+                        "lastName": {
+                          "type": "string",
+                          "description": "The customer’s last name."
+                        },
+                        "email": {
+                          "type": "string",
+                          "description": "The customer’s email."
+                        },
+                        "phone": {
+                          "type": "string",
+                          "description": "The customer’s phone number. This must be E.164 Standard for international telephone number",
+                          "pattern": "/^\\+[0-9]+$/"
+                        },
+                        "address": {
+                          "title": "Address",
+                          "type": "object",
+                          "description": "The customer’s address.",
+                          "properties": {
+                            "line1": {
+                              "type": "string",
+                              "description": "The address line 1 (e.g., street number, street name). This field needs to pass the canonical form of the address"
+                            },
+                            "line2": {
+                              "type": "string",
+                              "description": "The address line 2. This can be additional address data (e.g., apartment, suite, unit, or building)."
+                            },
+                            "line3": {
+                              "type": "string",
+                              "description": "The address line 3. This can be more additional address data if needed."
+                            },
+                            "city": {
+                              "type": "string",
+                              "description": "The address city name."
+                            },
+                            "state": {
+                              "type": "string",
+                              "description": "The address state name."
+                            },
+                            "postcode": {
+                              "type": "string",
+                              "description": "The address ZIP or postal code."
+                            },
+                            "country": {
+                              "type": "string",
+                              "description": "The address country code. This must be an ISO 3166-1 alpha-2 Standard (two-letters) for country codes."
+                            }
+                          },
+                          "required": [
+                            "line1",
+                            "city",
+                            "country"
+                          ]
+                        }
+                      },
+                      "required": [
+                        "firstName",
+                        "lastName",
+                        "email",
+                        "address"
+                      ]
+                    },
                     "payee": {
                       "title": "Payee",
                       "type": "object",
@@ -1154,11 +1222,274 @@
                         }
                       }
                     },
-                    "claim": {
-                      "title": "Claim",
+                    "purchase": {
+                      "title": "Purchase",
                       "type": "object",
-                      "description": "The payment request.",
+                      "description": "The customer's purchase data.",
                       "properties": {
+                        "total": {
+                          "title": "Amount",
+                          "type": "object",
+                          "description": "The total of the purchase",
+                          "properties": {
+                            "value": {
+                              "type": "string",
+                              "description": "The value of the amount.\n- An integer for currencies that are not typically fractional\n- A decimal fraction for currencies that are subdivided into thousandths"
+                            },
+                            "currency": {
+                              "type": "string",
+                              "description": "The currency code of the amount. This must be an ISO 4217 Standard (three letters) for currency codes."
+                            }
+                          },
+                          "required": [
+                            "value",
+                            "currency"
+                          ]
+                        },
+                        "items": {
+                          "type": "array",
+                          "description": "The items of the purchase.",
+                          "items": {
+                            "title": "PurchaseItem",
+                            "type": "object",
+                            "description": "A customer's purchase item.",
+                            "properties": {
+                              "name": {
+                                "type": "string",
+                                "description": "The name of the item."
+                              },
+                              "quantity": {
+                                "type": "string",
+                                "description": "The quantity to purchase for the item."
+                              },
+                              "amount": {
+                                "title": "Amount",
+                                "type": "object",
+                                "description": "The total of the item",
+                                "properties": {
+                                  "value": {
+                                    "type": "string",
+                                    "description": "The value of the amount.\n- An integer for currencies that are not typically fractional\n- A decimal fraction for currencies that are subdivided into thousandths"
+                                  },
+                                  "currency": {
+                                    "type": "string",
+                                    "description": "The currency code of the amount. This must be an ISO 4217 Standard (three letters) for currency codes."
+                                  }
+                                },
+                                "required": [
+                                  "value",
+                                  "currency"
+                                ]
+                              }
+                            },
+                            "required": [
+                              "name",
+                              "quantity",
+                              "amount"
+                            ]
+                          }
+                        }
+                      },
+                      "required": [
+                        "total"
+                      ]
+                    },
+                    "reference": {
+                      "type": "string",
+                      "description": "A unique string to reference the payment. This can be an order ID, or similar, and can be used to reconcile the payment with your internal systems."
+                    },
+                    "note": {
+                      "type": "string",
+                      "description": "A note to attach to the payment. This can be additional information."
+                    },
+                    "cancelUrl": {
+                      "type": "string",
+                      "description": "The URL to redirect your customers to when the payment is canceled."
+                    },
+                    "successUrl": {
+                      "type": "string",
+                      "description": "The URL to redirect your customers to when the payment is executed."
+                    },
+                    "plan": {
+                      "title": "Plan",
+                      "type": "object",
+                      "description": "The customer's payment plan.",
+                      "properties": {
+                        "source": {
+                          "type": "string",
+                          "description": "The customer's suited method for the payment.",
+                          "enum": [
+                            "HOL",
+                            "PYP",
+                            "STR"
+                          ]
+                        }
+                      }
+                    },
+                    "billing": {
+                      "title": "Billing",
+                      "type": "object",
+                      "description": "The payment billing data.",
+                      "properties": {
+                        "submitUrl": {
+                          "type": "string",
+                          "description": "The URL to redirect your customers to when the payment is claimed."
+                        },
+                        "approvalUrl": {
+                          "type": "string",
+                          "description": "The URL where your customers are redirected to when the payment is submitted."
+                        },
+                        "declineUrl": {
+                          "type": "string",
+                          "description": "The URL where your customers are redirected to when the payment is declined on the third-party side."
+                        },
+                        "executeUrl": {
+                          "type": "string",
+                          "description": "The URL where your customers are redirected to when the payment is approved on the third-party side."
+                        },
+                        "thirdId": {
+                          "type": "string",
+                          "description": "A unique string to reference the payment on the third-party side."
+                        },
+                        "events": {
+                          "type": "array",
+                          "description": "The transactions received from the third-party side."
+                        },
+                        "intent": {
+                          "type": "object",
+                          "description": "The payment data created on the third-party side."
+                        },
+                        "proof": {
+                          "type": "object",
+                          "description": "The proof of identity of the payment approver."
+                        },
+                        "signature": {
+                          "type": "string",
+                          "description": "The signature of the webhook message received when the payment is completed."
+                        }
+                      }
+                    },
+                    "createdAt": {
+                      "type": "string",
+                      "description": "Time at which the payment was created."
+                    },
+                    "claimedAt": {
+                      "type": "string",
+                      "description": "Time at which the payment was claimed."
+                    },
+                    "canceledAt": {
+                      "type": "string",
+                      "description": "Time at which the payment was canceled."
+                    },
+                    "submittedAt": {
+                      "type": "string",
+                      "description": "Time at which the payment was submitted."
+                    },
+                    "approvedAt": {
+                      "type": "string",
+                      "description": "Time at which the payment was approved."
+                    },
+                    "executedAt": {
+                      "type": "string",
+                      "description": "Time at which the payment was executed."
+                    },
+                    "completedAt": {
+                      "type": "string",
+                      "description": "Time at which the payment was completed."
+                    }
+                  },
+                  "required": [
+                    "purchase",
+                    "cancelUrl",
+                    "successUrl"
+                  ]
+                }
+              }
+            }
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
+          }
+        },
+        "tags": [
+          "Payments"
+        ],
+        "security": [
+          {
+            "HttpBearer": []
+          }
+        ]
+      }
+    },
+    "/v1/payments/{id}/cancel": {
+      "post": {
+        "operationId": "PaymentController_cancel",
+        "summary": "Cancel a payment",
+        "parameters": [
+          {
+            "name": "Accept-Language",
+            "required": false,
+            "in": "header",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "id",
+            "required": true,
+            "in": "path",
+            "description": "The ID of the payment.",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "next": {
+                      "type": "string",
+                      "description": "The URL of the immediate next step."
+                    },
+                    "data": {
+                      "title": "Payment",
+                      "type": "object",
+                      "description": "The payment data.",
+                      "properties": {
+                        "status": {
+                          "type": "string",
+                          "description": "The payment status.",
+                          "enum": [
+                            "init",
+                            "pending",
+                            "canceled",
+                            "submitted",
+                            "approved",
+                            "executed",
+                            "completed"
+                          ]
+                        },
+                        "paid": {
+                          "type": "boolean",
+                          "description": "An indicator that the payment was successfully captured."
+                        },
                         "context": {
                           "title": "Context",
                           "type": "object",
@@ -1240,6 +1571,53 @@
                             "email",
                             "address"
                           ]
+                        },
+                        "payee": {
+                          "title": "Payee",
+                          "type": "object",
+                          "description": "The payee data.",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "description": "The payee's name"
+                            },
+                            "plan": {
+                              "title": "Plan",
+                              "type": "object",
+                              "description": "The payee's payment plan.",
+                              "properties": {
+                                "sources": {
+                                  "type": "array",
+                                  "description": "The payee's suitable methods for the payment.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "A payee's payment method.",
+                                    "properties": {
+                                      "res": {
+                                        "title": "Source",
+                                        "type": "object",
+                                        "description": "A payment method.",
+                                        "properties": {
+                                          "code": {
+                                            "type": "string",
+                                            "description": "The code of the method."
+                                          },
+                                          "name": {
+                                            "type": "string",
+                                            "description": "The name of the method."
+                                          },
+                                          "image": {
+                                            "type": "string",
+                                            "description": "The URL of the method image."
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
                         },
                         "purchase": {
                           "title": "Purchase",
@@ -1344,417 +1722,6 @@
                               ]
                             }
                           }
-                        }
-                      },
-                      "required": [
-                        "purchase",
-                        "cancelUrl",
-                        "successUrl"
-                      ]
-                    },
-                    "billing": {
-                      "title": "Billing",
-                      "type": "object",
-                      "description": "The payment billing data.",
-                      "properties": {
-                        "submitUrl": {
-                          "type": "string",
-                          "description": "The URL to redirect your customers to when the payment is claimed."
-                        },
-                        "approvalUrl": {
-                          "type": "string",
-                          "description": "The URL where your customers are redirected to when the payment is submitted."
-                        },
-                        "declineUrl": {
-                          "type": "string",
-                          "description": "The URL where your customers are redirected to when the payment is declined on the third-party side."
-                        },
-                        "executeUrl": {
-                          "type": "string",
-                          "description": "The URL where your customers are redirected to when the payment is approved on the third-party side."
-                        },
-                        "thirdId": {
-                          "type": "string",
-                          "description": "A unique string to reference the payment on the third-party side."
-                        },
-                        "events": {
-                          "type": "array",
-                          "description": "The transactions received from the third-party side."
-                        },
-                        "intent": {
-                          "type": "object",
-                          "description": "The payment data created on the third-party side."
-                        },
-                        "proof": {
-                          "type": "object",
-                          "description": "The proof of identity of the payment approver."
-                        },
-                        "signature": {
-                          "type": "string",
-                          "description": "The signature of the webhook message received when the payment is completed."
-                        }
-                      }
-                    },
-                    "createdAt": {
-                      "type": "string",
-                      "description": "Time at which the payment was created."
-                    },
-                    "claimedAt": {
-                      "type": "string",
-                      "description": "Time at which the payment was claimed."
-                    },
-                    "canceledAt": {
-                      "type": "string",
-                      "description": "Time at which the payment was canceled."
-                    },
-                    "submittedAt": {
-                      "type": "string",
-                      "description": "Time at which the payment was submitted."
-                    },
-                    "approvedAt": {
-                      "type": "string",
-                      "description": "Time at which the payment was approved."
-                    },
-                    "executedAt": {
-                      "type": "string",
-                      "description": "Time at which the payment was executed."
-                    },
-                    "completedAt": {
-                      "type": "string",
-                      "description": "Time at which the payment was completed."
-                    }
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "401": {
-            "description": "Unauthorized"
-          },
-          "403": {
-            "description": "Forbidden"
-          },
-          "404": {
-            "description": "Not Found"
-          },
-          "500": {
-            "description": "Internal Server Error"
-          }
-        },
-        "tags": [
-          "Payments"
-        ],
-        "security": [
-          {
-            "HttpBearer": []
-          }
-        ]
-      }
-    },
-    "/v1/payments/{id}/cancel": {
-      "post": {
-        "operationId": "PaymentController_cancel",
-        "summary": "Cancel a payment",
-        "parameters": [
-          {
-            "name": "Accept-Language",
-            "required": false,
-            "in": "header",
-            "schema": {
-              "type": "string"
-            }
-          },
-          {
-            "name": "id",
-            "required": true,
-            "in": "path",
-            "description": "The ID of the payment.",
-            "schema": {
-              "type": "string"
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "object",
-                  "properties": {
-                    "next": {
-                      "type": "string",
-                      "description": "The URL of the immediate next step."
-                    },
-                    "data": {
-                      "title": "Payment",
-                      "type": "object",
-                      "description": "The payment data.",
-                      "properties": {
-                        "status": {
-                          "type": "string",
-                          "description": "The payment status.",
-                          "enum": [
-                            "init",
-                            "pending",
-                            "canceled",
-                            "submitted",
-                            "approved",
-                            "executed",
-                            "completed"
-                          ]
-                        },
-                        "paid": {
-                          "type": "boolean",
-                          "description": "An indicator that the payment was successfully captured."
-                        },
-                        "payee": {
-                          "title": "Payee",
-                          "type": "object",
-                          "description": "The payee data.",
-                          "properties": {
-                            "name": {
-                              "type": "string",
-                              "description": "The payee's name"
-                            },
-                            "plan": {
-                              "title": "Plan",
-                              "type": "object",
-                              "description": "The payee's payment plan.",
-                              "properties": {
-                                "sources": {
-                                  "type": "array",
-                                  "description": "The payee's suitable methods for the payment.",
-                                  "items": {
-                                    "type": "object",
-                                    "description": "A payee's payment method.",
-                                    "properties": {
-                                      "res": {
-                                        "title": "Source",
-                                        "type": "object",
-                                        "description": "A payment method.",
-                                        "properties": {
-                                          "code": {
-                                            "type": "string",
-                                            "description": "The code of the method."
-                                          },
-                                          "name": {
-                                            "type": "string",
-                                            "description": "The name of the method."
-                                          },
-                                          "image": {
-                                            "type": "string",
-                                            "description": "The URL of the method image."
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        },
-                        "claim": {
-                          "title": "Claim",
-                          "type": "object",
-                          "description": "The payment request.",
-                          "properties": {
-                            "context": {
-                              "title": "Context",
-                              "type": "object",
-                              "description": "Contextual data.",
-                              "properties": {
-                                "locale": {
-                                  "type": "string",
-                                  "description": "A language code. This should be an ISO 639-1 Standard for language codes.",
-                                  "pattern": "/^[a-z]{2}-[A-Z]{2}$/"
-                                }
-                              }
-                            },
-                            "payer": {
-                              "title": "Payer",
-                              "type": "object",
-                              "description": "The customer's billing data.",
-                              "properties": {
-                                "firstName": {
-                                  "type": "string",
-                                  "description": "The customer’s first name."
-                                },
-                                "lastName": {
-                                  "type": "string",
-                                  "description": "The customer’s last name."
-                                },
-                                "email": {
-                                  "type": "string",
-                                  "description": "The customer’s email."
-                                },
-                                "phone": {
-                                  "type": "string",
-                                  "description": "The customer’s phone number. This must be E.164 Standard for international telephone number",
-                                  "pattern": "/^\\+[0-9]+$/"
-                                },
-                                "address": {
-                                  "title": "Address",
-                                  "type": "object",
-                                  "description": "The customer’s address.",
-                                  "properties": {
-                                    "line1": {
-                                      "type": "string",
-                                      "description": "The address line 1 (e.g., street number, street name). This field needs to pass the canonical form of the address"
-                                    },
-                                    "line2": {
-                                      "type": "string",
-                                      "description": "The address line 2. This can be additional address data (e.g., apartment, suite, unit, or building)."
-                                    },
-                                    "line3": {
-                                      "type": "string",
-                                      "description": "The address line 3. This can be more additional address data if needed."
-                                    },
-                                    "city": {
-                                      "type": "string",
-                                      "description": "The address city name."
-                                    },
-                                    "state": {
-                                      "type": "string",
-                                      "description": "The address state name."
-                                    },
-                                    "postcode": {
-                                      "type": "string",
-                                      "description": "The address ZIP or postal code."
-                                    },
-                                    "country": {
-                                      "type": "string",
-                                      "description": "The address country code. This must be an ISO 3166-1 alpha-2 Standard (two-letters) for country codes."
-                                    }
-                                  },
-                                  "required": [
-                                    "line1",
-                                    "city",
-                                    "country"
-                                  ]
-                                }
-                              },
-                              "required": [
-                                "firstName",
-                                "lastName",
-                                "email",
-                                "address"
-                              ]
-                            },
-                            "purchase": {
-                              "title": "Purchase",
-                              "type": "object",
-                              "description": "The customer's purchase data.",
-                              "properties": {
-                                "total": {
-                                  "title": "Amount",
-                                  "type": "object",
-                                  "description": "The total of the purchase",
-                                  "properties": {
-                                    "value": {
-                                      "type": "string",
-                                      "description": "The value of the amount.\n- An integer for currencies that are not typically fractional\n- A decimal fraction for currencies that are subdivided into thousandths"
-                                    },
-                                    "currency": {
-                                      "type": "string",
-                                      "description": "The currency code of the amount. This must be an ISO 4217 Standard (three letters) for currency codes."
-                                    }
-                                  },
-                                  "required": [
-                                    "value",
-                                    "currency"
-                                  ]
-                                },
-                                "items": {
-                                  "type": "array",
-                                  "description": "The items of the purchase.",
-                                  "items": {
-                                    "title": "PurchaseItem",
-                                    "type": "object",
-                                    "description": "A customer's purchase item.",
-                                    "properties": {
-                                      "name": {
-                                        "type": "string",
-                                        "description": "The name of the item."
-                                      },
-                                      "quantity": {
-                                        "type": "string",
-                                        "description": "The quantity to purchase for the item."
-                                      },
-                                      "amount": {
-                                        "title": "Amount",
-                                        "type": "object",
-                                        "description": "The total of the item",
-                                        "properties": {
-                                          "value": {
-                                            "type": "string",
-                                            "description": "The value of the amount.\n- An integer for currencies that are not typically fractional\n- A decimal fraction for currencies that are subdivided into thousandths"
-                                          },
-                                          "currency": {
-                                            "type": "string",
-                                            "description": "The currency code of the amount. This must be an ISO 4217 Standard (three letters) for currency codes."
-                                          }
-                                        },
-                                        "required": [
-                                          "value",
-                                          "currency"
-                                        ]
-                                      }
-                                    },
-                                    "required": [
-                                      "name",
-                                      "quantity",
-                                      "amount"
-                                    ]
-                                  }
-                                }
-                              },
-                              "required": [
-                                "total"
-                              ]
-                            },
-                            "reference": {
-                              "type": "string",
-                              "description": "A unique string to reference the payment. This can be an order ID, or similar, and can be used to reconcile the payment with your internal systems."
-                            },
-                            "note": {
-                              "type": "string",
-                              "description": "A note to attach to the payment. This can be additional information."
-                            },
-                            "cancelUrl": {
-                              "type": "string",
-                              "description": "The URL to redirect your customers to when the payment is canceled."
-                            },
-                            "successUrl": {
-                              "type": "string",
-                              "description": "The URL to redirect your customers to when the payment is executed."
-                            },
-                            "plan": {
-                              "title": "Plan",
-                              "type": "object",
-                              "description": "The customer's payment plan.",
-                              "properties": {
-                                "source": {
-                                  "type": "string",
-                                  "description": "The customer's suited method for the payment.",
-                                  "enum": [
-                                    "HOL",
-                                    "PYP",
-                                    "STR"
-                                  ]
-                                }
-                              }
-                            }
-                          },
-                          "required": [
-                            "purchase",
-                            "cancelUrl",
-                            "successUrl"
-                          ]
                         },
                         "billing": {
                           "title": "Billing",
@@ -1827,7 +1794,12 @@
                           "type": "string",
                           "description": "Time at which the payment was completed."
                         }
-                      }
+                      },
+                      "required": [
+                        "purchase",
+                        "cancelUrl",
+                        "successUrl"
+                      ]
                     }
                   }
                 }
@@ -1917,6 +1889,88 @@
                           "type": "boolean",
                           "description": "An indicator that the payment was successfully captured."
                         },
+                        "context": {
+                          "title": "Context",
+                          "type": "object",
+                          "description": "Contextual data.",
+                          "properties": {
+                            "locale": {
+                              "type": "string",
+                              "description": "A language code. This should be an ISO 639-1 Standard for language codes.",
+                              "pattern": "/^[a-z]{2}-[A-Z]{2}$/"
+                            }
+                          }
+                        },
+                        "payer": {
+                          "title": "Payer",
+                          "type": "object",
+                          "description": "The customer's billing data.",
+                          "properties": {
+                            "firstName": {
+                              "type": "string",
+                              "description": "The customer’s first name."
+                            },
+                            "lastName": {
+                              "type": "string",
+                              "description": "The customer’s last name."
+                            },
+                            "email": {
+                              "type": "string",
+                              "description": "The customer’s email."
+                            },
+                            "phone": {
+                              "type": "string",
+                              "description": "The customer’s phone number. This must be E.164 Standard for international telephone number",
+                              "pattern": "/^\\+[0-9]+$/"
+                            },
+                            "address": {
+                              "title": "Address",
+                              "type": "object",
+                              "description": "The customer’s address.",
+                              "properties": {
+                                "line1": {
+                                  "type": "string",
+                                  "description": "The address line 1 (e.g., street number, street name). This field needs to pass the canonical form of the address"
+                                },
+                                "line2": {
+                                  "type": "string",
+                                  "description": "The address line 2. This can be additional address data (e.g., apartment, suite, unit, or building)."
+                                },
+                                "line3": {
+                                  "type": "string",
+                                  "description": "The address line 3. This can be more additional address data if needed."
+                                },
+                                "city": {
+                                  "type": "string",
+                                  "description": "The address city name."
+                                },
+                                "state": {
+                                  "type": "string",
+                                  "description": "The address state name."
+                                },
+                                "postcode": {
+                                  "type": "string",
+                                  "description": "The address ZIP or postal code."
+                                },
+                                "country": {
+                                  "type": "string",
+                                  "description": "The address country code. This must be an ISO 3166-1 alpha-2 Standard (two-letters) for country codes."
+                                }
+                              },
+                              "required": [
+                                "line1",
+                                "city",
+                                "country"
+                              ]
+                            }
+                          },
+                          "required": [
+                            "firstName",
+                            "lastName",
+                            "email",
+                            "address"
+                          ]
+                        },
                         "payee": {
                           "title": "Payee",
                           "type": "object",
@@ -1964,203 +2018,109 @@
                             }
                           }
                         },
-                        "claim": {
-                          "title": "Claim",
+                        "purchase": {
+                          "title": "Purchase",
                           "type": "object",
-                          "description": "The payment request.",
+                          "description": "The customer's purchase data.",
                           "properties": {
-                            "context": {
-                              "title": "Context",
+                            "total": {
+                              "title": "Amount",
                               "type": "object",
-                              "description": "Contextual data.",
+                              "description": "The total of the purchase",
                               "properties": {
-                                "locale": {
+                                "value": {
                                   "type": "string",
-                                  "description": "A language code. This should be an ISO 639-1 Standard for language codes.",
-                                  "pattern": "/^[a-z]{2}-[A-Z]{2}$/"
-                                }
-                              }
-                            },
-                            "payer": {
-                              "title": "Payer",
-                              "type": "object",
-                              "description": "The customer's billing data.",
-                              "properties": {
-                                "firstName": {
-                                  "type": "string",
-                                  "description": "The customer’s first name."
+                                  "description": "The value of the amount.\n- An integer for currencies that are not typically fractional\n- A decimal fraction for currencies that are subdivided into thousandths"
                                 },
-                                "lastName": {
+                                "currency": {
                                   "type": "string",
-                                  "description": "The customer’s last name."
-                                },
-                                "email": {
-                                  "type": "string",
-                                  "description": "The customer’s email."
-                                },
-                                "phone": {
-                                  "type": "string",
-                                  "description": "The customer’s phone number. This must be E.164 Standard for international telephone number",
-                                  "pattern": "/^\\+[0-9]+$/"
-                                },
-                                "address": {
-                                  "title": "Address",
-                                  "type": "object",
-                                  "description": "The customer’s address.",
-                                  "properties": {
-                                    "line1": {
-                                      "type": "string",
-                                      "description": "The address line 1 (e.g., street number, street name). This field needs to pass the canonical form of the address"
-                                    },
-                                    "line2": {
-                                      "type": "string",
-                                      "description": "The address line 2. This can be additional address data (e.g., apartment, suite, unit, or building)."
-                                    },
-                                    "line3": {
-                                      "type": "string",
-                                      "description": "The address line 3. This can be more additional address data if needed."
-                                    },
-                                    "city": {
-                                      "type": "string",
-                                      "description": "The address city name."
-                                    },
-                                    "state": {
-                                      "type": "string",
-                                      "description": "The address state name."
-                                    },
-                                    "postcode": {
-                                      "type": "string",
-                                      "description": "The address ZIP or postal code."
-                                    },
-                                    "country": {
-                                      "type": "string",
-                                      "description": "The address country code. This must be an ISO 3166-1 alpha-2 Standard (two-letters) for country codes."
-                                    }
-                                  },
-                                  "required": [
-                                    "line1",
-                                    "city",
-                                    "country"
-                                  ]
+                                  "description": "The currency code of the amount. This must be an ISO 4217 Standard (three letters) for currency codes."
                                 }
                               },
                               "required": [
-                                "firstName",
-                                "lastName",
-                                "email",
-                                "address"
+                                "value",
+                                "currency"
                               ]
                             },
-                            "purchase": {
-                              "title": "Purchase",
-                              "type": "object",
-                              "description": "The customer's purchase data.",
-                              "properties": {
-                                "total": {
-                                  "title": "Amount",
-                                  "type": "object",
-                                  "description": "The total of the purchase",
-                                  "properties": {
-                                    "value": {
-                                      "type": "string",
-                                      "description": "The value of the amount.\n- An integer for currencies that are not typically fractional\n- A decimal fraction for currencies that are subdivided into thousandths"
-                                    },
-                                    "currency": {
-                                      "type": "string",
-                                      "description": "The currency code of the amount. This must be an ISO 4217 Standard (three letters) for currency codes."
-                                    }
+                            "items": {
+                              "type": "array",
+                              "description": "The items of the purchase.",
+                              "items": {
+                                "title": "PurchaseItem",
+                                "type": "object",
+                                "description": "A customer's purchase item.",
+                                "properties": {
+                                  "name": {
+                                    "type": "string",
+                                    "description": "The name of the item."
                                   },
-                                  "required": [
-                                    "value",
-                                    "currency"
-                                  ]
-                                },
-                                "items": {
-                                  "type": "array",
-                                  "description": "The items of the purchase.",
-                                  "items": {
-                                    "title": "PurchaseItem",
+                                  "quantity": {
+                                    "type": "string",
+                                    "description": "The quantity to purchase for the item."
+                                  },
+                                  "amount": {
+                                    "title": "Amount",
                                     "type": "object",
-                                    "description": "A customer's purchase item.",
+                                    "description": "The total of the item",
                                     "properties": {
-                                      "name": {
+                                      "value": {
                                         "type": "string",
-                                        "description": "The name of the item."
+                                        "description": "The value of the amount.\n- An integer for currencies that are not typically fractional\n- A decimal fraction for currencies that are subdivided into thousandths"
                                       },
-                                      "quantity": {
+                                      "currency": {
                                         "type": "string",
-                                        "description": "The quantity to purchase for the item."
-                                      },
-                                      "amount": {
-                                        "title": "Amount",
-                                        "type": "object",
-                                        "description": "The total of the item",
-                                        "properties": {
-                                          "value": {
-                                            "type": "string",
-                                            "description": "The value of the amount.\n- An integer for currencies that are not typically fractional\n- A decimal fraction for currencies that are subdivided into thousandths"
-                                          },
-                                          "currency": {
-                                            "type": "string",
-                                            "description": "The currency code of the amount. This must be an ISO 4217 Standard (three letters) for currency codes."
-                                          }
-                                        },
-                                        "required": [
-                                          "value",
-                                          "currency"
-                                        ]
+                                        "description": "The currency code of the amount. This must be an ISO 4217 Standard (three letters) for currency codes."
                                       }
                                     },
                                     "required": [
-                                      "name",
-                                      "quantity",
-                                      "amount"
+                                      "value",
+                                      "currency"
                                     ]
                                   }
-                                }
-                              },
-                              "required": [
-                                "total"
-                              ]
-                            },
-                            "reference": {
-                              "type": "string",
-                              "description": "A unique string to reference the payment. This can be an order ID, or similar, and can be used to reconcile the payment with your internal systems."
-                            },
-                            "note": {
-                              "type": "string",
-                              "description": "A note to attach to the payment. This can be additional information."
-                            },
-                            "cancelUrl": {
-                              "type": "string",
-                              "description": "The URL to redirect your customers to when the payment is canceled."
-                            },
-                            "successUrl": {
-                              "type": "string",
-                              "description": "The URL to redirect your customers to when the payment is executed."
-                            },
-                            "plan": {
-                              "title": "Plan",
-                              "type": "object",
-                              "description": "The customer's payment plan.",
-                              "properties": {
-                                "source": {
-                                  "type": "string",
-                                  "description": "The customer's suited method for the payment.",
-                                  "enum": [
-                                    "HOL",
-                                    "PYP",
-                                    "STR"
-                                  ]
-                                }
+                                },
+                                "required": [
+                                  "name",
+                                  "quantity",
+                                  "amount"
+                                ]
                               }
                             }
                           },
                           "required": [
-                            "purchase",
-                            "cancelUrl",
-                            "successUrl"
+                            "total"
                           ]
+                        },
+                        "reference": {
+                          "type": "string",
+                          "description": "A unique string to reference the payment. This can be an order ID, or similar, and can be used to reconcile the payment with your internal systems."
+                        },
+                        "note": {
+                          "type": "string",
+                          "description": "A note to attach to the payment. This can be additional information."
+                        },
+                        "cancelUrl": {
+                          "type": "string",
+                          "description": "The URL to redirect your customers to when the payment is canceled."
+                        },
+                        "successUrl": {
+                          "type": "string",
+                          "description": "The URL to redirect your customers to when the payment is executed."
+                        },
+                        "plan": {
+                          "title": "Plan",
+                          "type": "object",
+                          "description": "The customer's payment plan.",
+                          "properties": {
+                            "source": {
+                              "type": "string",
+                              "description": "The customer's suited method for the payment.",
+                              "enum": [
+                                "HOL",
+                                "PYP",
+                                "STR"
+                              ]
+                            }
+                          }
                         },
                         "billing": {
                           "title": "Billing",
@@ -2233,7 +2193,12 @@
                           "type": "string",
                           "description": "Time at which the payment was completed."
                         }
-                      }
+                      },
+                      "required": [
+                        "purchase",
+                        "cancelUrl",
+                        "successUrl"
+                      ]
                     }
                   }
                 }
