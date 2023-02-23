@@ -267,6 +267,53 @@
                             }
                           }
                         },
+                        "payee": {
+                          "title": "Payee",
+                          "type": "object",
+                          "description": "The payee data.",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "description": "The payee's name"
+                            },
+                            "plan": {
+                              "title": "Plan",
+                              "type": "object",
+                              "description": "The payee's payment plan.",
+                              "properties": {
+                                "sources": {
+                                  "type": "array",
+                                  "description": "The payee's suitable methods for the payment.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "A payee's payment method.",
+                                    "properties": {
+                                      "res": {
+                                        "title": "Source",
+                                        "type": "object",
+                                        "description": "A payment method.",
+                                        "properties": {
+                                          "code": {
+                                            "type": "string",
+                                            "description": "The code of the method."
+                                          },
+                                          "name": {
+                                            "type": "string",
+                                            "description": "The name of the method."
+                                          },
+                                          "image": {
+                                            "type": "string",
+                                            "description": "The URL of the method image."
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
                         "payer": {
                           "title": "Payer",
                           "type": "object",
@@ -336,53 +383,6 @@
                             "email",
                             "address"
                           ]
-                        },
-                        "payee": {
-                          "title": "Payee",
-                          "type": "object",
-                          "description": "The payee data.",
-                          "properties": {
-                            "name": {
-                              "type": "string",
-                              "description": "The payee's name"
-                            },
-                            "plan": {
-                              "title": "Plan",
-                              "type": "object",
-                              "description": "The payee's payment plan.",
-                              "properties": {
-                                "sources": {
-                                  "type": "array",
-                                  "description": "The payee's suitable methods for the payment.",
-                                  "items": {
-                                    "type": "object",
-                                    "description": "A payee's payment method.",
-                                    "properties": {
-                                      "res": {
-                                        "title": "Source",
-                                        "type": "object",
-                                        "description": "A payment method.",
-                                        "properties": {
-                                          "code": {
-                                            "type": "string",
-                                            "description": "The code of the method."
-                                          },
-                                          "name": {
-                                            "type": "string",
-                                            "description": "The name of the method."
-                                          },
-                                          "image": {
-                                            "type": "string",
-                                            "description": "The URL of the method image."
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
                         },
                         "purchase": {
                           "title": "Purchase",
@@ -464,14 +464,6 @@
                           "type": "string",
                           "description": "A note to attach to the payment. This can be additional information."
                         },
-                        "cancelUrl": {
-                          "type": "string",
-                          "description": "The URL to redirect your customers to when the payment is canceled."
-                        },
-                        "successUrl": {
-                          "type": "string",
-                          "description": "The URL to redirect your customers to when the payment is executed."
-                        },
                         "plan": {
                           "title": "Plan",
                           "type": "object",
@@ -487,6 +479,14 @@
                               ]
                             }
                           }
+                        },
+                        "cancelUrl": {
+                          "type": "string",
+                          "description": "The URL to redirect your customers to when the payment is canceled."
+                        },
+                        "successUrl": {
+                          "type": "string",
+                          "description": "The URL to redirect your customers to when the payment is executed."
                         },
                         "billing": {
                           "title": "Billing",
@@ -695,6 +695,53 @@
                               }
                             }
                           },
+                          "payee": {
+                            "title": "Payee",
+                            "type": "object",
+                            "description": "The payee data.",
+                            "properties": {
+                              "name": {
+                                "type": "string",
+                                "description": "The payee's name"
+                              },
+                              "plan": {
+                                "title": "Plan",
+                                "type": "object",
+                                "description": "The payee's payment plan.",
+                                "properties": {
+                                  "sources": {
+                                    "type": "array",
+                                    "description": "The payee's suitable methods for the payment.",
+                                    "items": {
+                                      "type": "object",
+                                      "description": "A payee's payment method.",
+                                      "properties": {
+                                        "res": {
+                                          "title": "Source",
+                                          "type": "object",
+                                          "description": "A payment method.",
+                                          "properties": {
+                                            "code": {
+                                              "type": "string",
+                                              "description": "The code of the method."
+                                            },
+                                            "name": {
+                                              "type": "string",
+                                              "description": "The name of the method."
+                                            },
+                                            "image": {
+                                              "type": "string",
+                                              "description": "The URL of the method image."
+                                            }
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          },
                           "payer": {
                             "title": "Payer",
                             "type": "object",
@@ -764,53 +811,6 @@
                               "email",
                               "address"
                             ]
-                          },
-                          "payee": {
-                            "title": "Payee",
-                            "type": "object",
-                            "description": "The payee data.",
-                            "properties": {
-                              "name": {
-                                "type": "string",
-                                "description": "The payee's name"
-                              },
-                              "plan": {
-                                "title": "Plan",
-                                "type": "object",
-                                "description": "The payee's payment plan.",
-                                "properties": {
-                                  "sources": {
-                                    "type": "array",
-                                    "description": "The payee's suitable methods for the payment.",
-                                    "items": {
-                                      "type": "object",
-                                      "description": "A payee's payment method.",
-                                      "properties": {
-                                        "res": {
-                                          "title": "Source",
-                                          "type": "object",
-                                          "description": "A payment method.",
-                                          "properties": {
-                                            "code": {
-                                              "type": "string",
-                                              "description": "The code of the method."
-                                            },
-                                            "name": {
-                                              "type": "string",
-                                              "description": "The name of the method."
-                                            },
-                                            "image": {
-                                              "type": "string",
-                                              "description": "The URL of the method image."
-                                            }
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
                           },
                           "purchase": {
                             "title": "Purchase",
@@ -892,14 +892,6 @@
                             "type": "string",
                             "description": "A note to attach to the payment. This can be additional information."
                           },
-                          "cancelUrl": {
-                            "type": "string",
-                            "description": "The URL to redirect your customers to when the payment is canceled."
-                          },
-                          "successUrl": {
-                            "type": "string",
-                            "description": "The URL to redirect your customers to when the payment is executed."
-                          },
                           "plan": {
                             "title": "Plan",
                             "type": "object",
@@ -915,6 +907,14 @@
                                 ]
                               }
                             }
+                          },
+                          "cancelUrl": {
+                            "type": "string",
+                            "description": "The URL to redirect your customers to when the payment is canceled."
+                          },
+                          "successUrl": {
+                            "type": "string",
+                            "description": "The URL to redirect your customers to when the payment is executed."
                           },
                           "billing": {
                             "title": "Billing",
@@ -1105,6 +1105,53 @@
                         }
                       }
                     },
+                    "payee": {
+                      "title": "Payee",
+                      "type": "object",
+                      "description": "The payee data.",
+                      "properties": {
+                        "name": {
+                          "type": "string",
+                          "description": "The payee's name"
+                        },
+                        "plan": {
+                          "title": "Plan",
+                          "type": "object",
+                          "description": "The payee's payment plan.",
+                          "properties": {
+                            "sources": {
+                              "type": "array",
+                              "description": "The payee's suitable methods for the payment.",
+                              "items": {
+                                "type": "object",
+                                "description": "A payee's payment method.",
+                                "properties": {
+                                  "res": {
+                                    "title": "Source",
+                                    "type": "object",
+                                    "description": "A payment method.",
+                                    "properties": {
+                                      "code": {
+                                        "type": "string",
+                                        "description": "The code of the method."
+                                      },
+                                      "name": {
+                                        "type": "string",
+                                        "description": "The name of the method."
+                                      },
+                                      "image": {
+                                        "type": "string",
+                                        "description": "The URL of the method image."
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        }
+                      }
+                    },
                     "payer": {
                       "title": "Payer",
                       "type": "object",
@@ -1174,53 +1221,6 @@
                         "email",
                         "address"
                       ]
-                    },
-                    "payee": {
-                      "title": "Payee",
-                      "type": "object",
-                      "description": "The payee data.",
-                      "properties": {
-                        "name": {
-                          "type": "string",
-                          "description": "The payee's name"
-                        },
-                        "plan": {
-                          "title": "Plan",
-                          "type": "object",
-                          "description": "The payee's payment plan.",
-                          "properties": {
-                            "sources": {
-                              "type": "array",
-                              "description": "The payee's suitable methods for the payment.",
-                              "items": {
-                                "type": "object",
-                                "description": "A payee's payment method.",
-                                "properties": {
-                                  "res": {
-                                    "title": "Source",
-                                    "type": "object",
-                                    "description": "A payment method.",
-                                    "properties": {
-                                      "code": {
-                                        "type": "string",
-                                        "description": "The code of the method."
-                                      },
-                                      "name": {
-                                        "type": "string",
-                                        "description": "The name of the method."
-                                      },
-                                      "image": {
-                                        "type": "string",
-                                        "description": "The URL of the method image."
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
-                        }
-                      }
                     },
                     "purchase": {
                       "title": "Purchase",
@@ -1302,14 +1302,6 @@
                       "type": "string",
                       "description": "A note to attach to the payment. This can be additional information."
                     },
-                    "cancelUrl": {
-                      "type": "string",
-                      "description": "The URL to redirect your customers to when the payment is canceled."
-                    },
-                    "successUrl": {
-                      "type": "string",
-                      "description": "The URL to redirect your customers to when the payment is executed."
-                    },
                     "plan": {
                       "title": "Plan",
                       "type": "object",
@@ -1325,6 +1317,14 @@
                           ]
                         }
                       }
+                    },
+                    "cancelUrl": {
+                      "type": "string",
+                      "description": "The URL to redirect your customers to when the payment is canceled."
+                    },
+                    "successUrl": {
+                      "type": "string",
+                      "description": "The URL to redirect your customers to when the payment is executed."
                     },
                     "billing": {
                       "title": "Billing",
@@ -1502,6 +1502,53 @@
                             }
                           }
                         },
+                        "payee": {
+                          "title": "Payee",
+                          "type": "object",
+                          "description": "The payee data.",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "description": "The payee's name"
+                            },
+                            "plan": {
+                              "title": "Plan",
+                              "type": "object",
+                              "description": "The payee's payment plan.",
+                              "properties": {
+                                "sources": {
+                                  "type": "array",
+                                  "description": "The payee's suitable methods for the payment.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "A payee's payment method.",
+                                    "properties": {
+                                      "res": {
+                                        "title": "Source",
+                                        "type": "object",
+                                        "description": "A payment method.",
+                                        "properties": {
+                                          "code": {
+                                            "type": "string",
+                                            "description": "The code of the method."
+                                          },
+                                          "name": {
+                                            "type": "string",
+                                            "description": "The name of the method."
+                                          },
+                                          "image": {
+                                            "type": "string",
+                                            "description": "The URL of the method image."
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
                         "payer": {
                           "title": "Payer",
                           "type": "object",
@@ -1571,53 +1618,6 @@
                             "email",
                             "address"
                           ]
-                        },
-                        "payee": {
-                          "title": "Payee",
-                          "type": "object",
-                          "description": "The payee data.",
-                          "properties": {
-                            "name": {
-                              "type": "string",
-                              "description": "The payee's name"
-                            },
-                            "plan": {
-                              "title": "Plan",
-                              "type": "object",
-                              "description": "The payee's payment plan.",
-                              "properties": {
-                                "sources": {
-                                  "type": "array",
-                                  "description": "The payee's suitable methods for the payment.",
-                                  "items": {
-                                    "type": "object",
-                                    "description": "A payee's payment method.",
-                                    "properties": {
-                                      "res": {
-                                        "title": "Source",
-                                        "type": "object",
-                                        "description": "A payment method.",
-                                        "properties": {
-                                          "code": {
-                                            "type": "string",
-                                            "description": "The code of the method."
-                                          },
-                                          "name": {
-                                            "type": "string",
-                                            "description": "The name of the method."
-                                          },
-                                          "image": {
-                                            "type": "string",
-                                            "description": "The URL of the method image."
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
                         },
                         "purchase": {
                           "title": "Purchase",
@@ -1699,14 +1699,6 @@
                           "type": "string",
                           "description": "A note to attach to the payment. This can be additional information."
                         },
-                        "cancelUrl": {
-                          "type": "string",
-                          "description": "The URL to redirect your customers to when the payment is canceled."
-                        },
-                        "successUrl": {
-                          "type": "string",
-                          "description": "The URL to redirect your customers to when the payment is executed."
-                        },
                         "plan": {
                           "title": "Plan",
                           "type": "object",
@@ -1722,6 +1714,14 @@
                               ]
                             }
                           }
+                        },
+                        "cancelUrl": {
+                          "type": "string",
+                          "description": "The URL to redirect your customers to when the payment is canceled."
+                        },
+                        "successUrl": {
+                          "type": "string",
+                          "description": "The URL to redirect your customers to when the payment is executed."
                         },
                         "billing": {
                           "title": "Billing",
@@ -1901,6 +1901,53 @@
                             }
                           }
                         },
+                        "payee": {
+                          "title": "Payee",
+                          "type": "object",
+                          "description": "The payee data.",
+                          "properties": {
+                            "name": {
+                              "type": "string",
+                              "description": "The payee's name"
+                            },
+                            "plan": {
+                              "title": "Plan",
+                              "type": "object",
+                              "description": "The payee's payment plan.",
+                              "properties": {
+                                "sources": {
+                                  "type": "array",
+                                  "description": "The payee's suitable methods for the payment.",
+                                  "items": {
+                                    "type": "object",
+                                    "description": "A payee's payment method.",
+                                    "properties": {
+                                      "res": {
+                                        "title": "Source",
+                                        "type": "object",
+                                        "description": "A payment method.",
+                                        "properties": {
+                                          "code": {
+                                            "type": "string",
+                                            "description": "The code of the method."
+                                          },
+                                          "name": {
+                                            "type": "string",
+                                            "description": "The name of the method."
+                                          },
+                                          "image": {
+                                            "type": "string",
+                                            "description": "The URL of the method image."
+                                          }
+                                        }
+                                      }
+                                    }
+                                  }
+                                }
+                              }
+                            }
+                          }
+                        },
                         "payer": {
                           "title": "Payer",
                           "type": "object",
@@ -1970,53 +2017,6 @@
                             "email",
                             "address"
                           ]
-                        },
-                        "payee": {
-                          "title": "Payee",
-                          "type": "object",
-                          "description": "The payee data.",
-                          "properties": {
-                            "name": {
-                              "type": "string",
-                              "description": "The payee's name"
-                            },
-                            "plan": {
-                              "title": "Plan",
-                              "type": "object",
-                              "description": "The payee's payment plan.",
-                              "properties": {
-                                "sources": {
-                                  "type": "array",
-                                  "description": "The payee's suitable methods for the payment.",
-                                  "items": {
-                                    "type": "object",
-                                    "description": "A payee's payment method.",
-                                    "properties": {
-                                      "res": {
-                                        "title": "Source",
-                                        "type": "object",
-                                        "description": "A payment method.",
-                                        "properties": {
-                                          "code": {
-                                            "type": "string",
-                                            "description": "The code of the method."
-                                          },
-                                          "name": {
-                                            "type": "string",
-                                            "description": "The name of the method."
-                                          },
-                                          "image": {
-                                            "type": "string",
-                                            "description": "The URL of the method image."
-                                          }
-                                        }
-                                      }
-                                    }
-                                  }
-                                }
-                              }
-                            }
-                          }
                         },
                         "purchase": {
                           "title": "Purchase",
@@ -2098,14 +2098,6 @@
                           "type": "string",
                           "description": "A note to attach to the payment. This can be additional information."
                         },
-                        "cancelUrl": {
-                          "type": "string",
-                          "description": "The URL to redirect your customers to when the payment is canceled."
-                        },
-                        "successUrl": {
-                          "type": "string",
-                          "description": "The URL to redirect your customers to when the payment is executed."
-                        },
                         "plan": {
                           "title": "Plan",
                           "type": "object",
@@ -2121,6 +2113,14 @@
                               ]
                             }
                           }
+                        },
+                        "cancelUrl": {
+                          "type": "string",
+                          "description": "The URL to redirect your customers to when the payment is canceled."
+                        },
+                        "successUrl": {
+                          "type": "string",
+                          "description": "The URL to redirect your customers to when the payment is executed."
                         },
                         "billing": {
                           "title": "Billing",
